@@ -1,0 +1,583 @@
+[
+  {
+    "id": 0,
+    "title": "The Illusion of More Context",
+    "timeStart": 0,
+    "timeEnd": 39,
+    "timeLabel": "0:00 – 0:39",
+    "description": "The common assumption that feeding an AI more data automatically increases its capability is flawed. Instead, overwhelming the AI with excessive context leads to 'attention dilution,' making it perform worse, akin to a blender full of instructions.",
+    "quote": "You'd think it would become your absolute best employee, right? Like capable of doing anything. >> the dream. You just feed it everything and assume it's going to work perfectly. >> Right, but the science shows it actually gets dumber.",
+    "accentColor": "#4f98a3",
+    "svgTemplate": "funnel",
+    "svgData": {
+      "stages": [
+        "Massive Data Input",
+        "Attention Dilution",
+        "Decreased Performance"
+      ]
+    }
+  },
+  {
+    "id": 1,
+    "title": "Introducing Agent Skills: A Paradigm Shift",
+    "timeStart": 39,
+    "timeEnd": 122,
+    "timeLabel": "0:39 – 2:02",
+    "description": "This segment introduces the concept of 'agent skills' as a lightweight primitive that is replacing complex multi-agent systems. Agent skills allow a single general-purpose AI to become a hyper-specialist for brief, necessary moments, sidestepping the complexity of manager-worker agent networks.",
+    "quote": "We are uncovering why dumping data into massive AI context windows is, frankly, a recipe for disaster. And why this simple lightweight primitive called an agent skill is quietly replacing the entire bloated multi-agent ecosystem.",
+    "accentColor": "#6daa45",
+    "svgTemplate": "flow",
+    "svgData": {
+      "steps": [
+        "Old: Multi-Agent Systems",
+        "New: Agent Skills",
+        "Result: Hyper-Specialization"
+      ],
+      "sublabels": [
+        "Complex Networks",
+        "Lightweight Primitive",
+        "On-Demand Expertise"
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "title": "Anatomy of an Agent Skill",
+    "timeStart": 122,
+    "timeEnd": 241,
+    "timeLabel": "2:02 – 4:01",
+    "description": "Agent skills are surprisingly simple, starting with a folder containing a 'skill.md' file for metadata and instructions. Optional subdirectories like 'scripts,' 'references,' and 'assets' handle specific functionalities, separating the 'what' from the 'how' for deterministic execution.",
+    "quote": "At its core, an agent skill is literally just a folder on your file system. >> Wait, just a folder? >> Just a folder.",
+    "accentColor": "#da7101",
+    "svgTemplate": "tree",
+    "svgData": {
+      "root": "Agent Skill Folder",
+      "children": [
+        "skill.md (Metadata & Instructions)",
+        "scripts/ (Executable Code)",
+        "references/ (Dense Context)",
+        "assets/ (Schemas, Templates)"
+      ],
+      "sublabels": [
+        "Brain",
+        "Deterministic Logic",
+        "External Data",
+        "Configuration"
+      ],
+      "note": "Separates 'what' from 'how' for clarity and efficiency."
+    }
+  },
+  {
+    "id": 3,
+    "title": "Two Paths to Skill Creation",
+    "timeStart": 241,
+    "timeEnd": 436,
+    "timeLabel": "4:01 – 7:16",
+    "description": "Skills can be created by subject matter experts who translate their knowledge into the skill.md format, democratizing agent creation. Alternatively, developers can observe an agent's successful workflow and crystallize it into a reusable skill, akin to refining a recipe.",
+    "quote": "Path A is driven by subject matter experts. So, I'm picturing um an HR manager who has an onboarding guide, or maybe a compliance officer with a massive run book. >> Right. >> They don't need to learn Python. They just translate their existing human instructions into this skill.md format.",
+    "accentColor": "#7a39bb",
+    "svgTemplate": "comparison",
+    "svgData": {
+      "left": {
+        "title": "Path A: Expert Driven",
+        "icon": "🧑‍🏫",
+        "lines": [
+          "Subject Matter Experts",
+          "Translate existing knowledge",
+          "Democratizes creation",
+          "No coding required"
+        ],
+        "footer": "Focus on 'What'"
+      },
+      "right": {
+        "title": "Path B: Developer Driven",
+        "icon": "💻",
+        "lines": [
+          "Developers",
+          "Refine successful traces",
+          "Captures complex workflows",
+          "Code optimization"
+        ],
+        "footer": "Focus on 'How'"
+      }
+    }
+  },
+  {
+    "id": 4,
+    "title": "Progressive Disclosure: The Restaurant Analogy",
+    "timeStart": 436,
+    "timeEnd": 503,
+    "timeLabel": "7:16 – 8:23",
+    "description": "Agent skills embody progressive disclosure, revealing complex mechanics only when needed. This is likened to a restaurant kitchen where the menu (skill.md) is always visible, but the detailed recipe (references) and tools (scripts) are only used when a specific dish is ordered.",
+    "quote": "The technical term the white paper uses for this is progressive disclosure. >> Progressive disclosure? >> Yeah. You only reveal the complex mechanics of a task when the task is actively triggered.",
+    "accentColor": "#a13544",
+    "svgTemplate": "funnel",
+    "svgData": {
+      "stages": [
+        "User Request (Order)",
+        "Skill Metadata (Menu)",
+        "Skill Execution (Recipe & Tools)"
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "title": "Skills vs. MCP and Global Context",
+    "timeStart": 503,
+    "timeEnd": 600,
+    "timeLabel": "8:23 – 10:00",
+    "description": "Skills provide 'know-how' (procedural memory), distinct from MCP which offers 'reach' (connecting to external systems). Unlike global context files (e.g., agents.md) which are always on, skills are strictly on-demand, preventing unnecessary token usage.",
+    "quote": "A skill, on the other hand, gives the agent know-how. It's procedural memory. It's the step-by-step logic of what to do with that Salesforce record once you actually have it.",
+    "accentColor": "#4f98a3",
+    "svgTemplate": "comparison",
+    "svgData": {
+      "left": {
+        "title": "Agent Skill",
+        "icon": "🧠",
+        "lines": [
+          "Provides 'Know-How'",
+          "Procedural Memory",
+          "On-Demand Execution",
+          "Reduces Context Load"
+        ],
+        "footer": "Internal Logic"
+      },
+      "right": {
+        "title": "MCP / Global Context",
+        "icon": "🌐",
+        "lines": [
+          "Provides 'Reach'",
+          "External System Access / Always-On Rules",
+          "Always Available",
+          "Increases Context Load"
+        ],
+        "footer": "External Connection / Global Rules"
+      }
+    }
+  },
+  {
+    "id": 6,
+    "title": "The Context Drought Crisis",
+    "timeStart": 600,
+    "timeEnd": 716,
+    "timeLabel": "10:00 – 11:56",
+    "description": "The naive approach of dumping all data into large context windows leads to 'context drought,' where performance degrades silently as input grows. The 'lost in the middle' phenomenon shows models struggle to retrieve information from large contexts, wasting compute.",
+    "quote": "For a long time, the industry's naive assumption was that larger context windows would just magically solve all our orchestration problems. >> Just throw more context at it. >> Right.",
+    "accentColor": "#6daa45",
+    "svgTemplate": "chart",
+    "svgData": {
+      "title": "Model Performance vs. Context Size",
+      "points": [
+        [
+          25,
+          80
+        ],
+        [
+          50,
+          75
+        ],
+        [
+          75,
+          60
+        ],
+        [
+          100,
+          40
+        ],
+        [
+          125,
+          20
+        ]
+      ],
+      "annotation": "Performance degrades significantly",
+      "xLabel": "Context Window Size (Relative)",
+      "yLabel": "Accuracy / Performance"
+    }
+  },
+  {
+    "id": 7,
+    "title": "Token Efficiency with Progressive Disclosure",
+    "timeStart": 716,
+    "timeEnd": 803,
+    "timeLabel": "11:56 – 13:23",
+    "description": "Progressive disclosure drastically reduces token usage by loading only skill metadata initially (e.g., 4,000 tokens) and then the specific skill's active context (e.g., 2,000 tokens) when triggered. This can achieve up to a 98% reduction in active context, keeping the model sharp.",
+    "quote": "You're taking 15,000 tokens of active heavy context and compressing it down to maybe 6,000. >> The white paper shows this achieves up to a 98% reduction in active context.",
+    "accentColor": "#da7101",
+    "svgTemplate": "chart",
+    "svgData": {
+      "title": "Active Context Reduction",
+      "points": [
+        [
+          20,
+          90
+        ],
+        [
+          50,
+          70
+        ],
+        [
+          80,
+          20
+        ]
+      ],
+      "annotation": "Up to 98% reduction",
+      "xLabel": "Context Loading Strategy",
+      "yLabel": "Tokens Used (Relative)"
+    }
+  },
+  {
+    "id": 8,
+    "title": "Scaling Skills with RAG",
+    "timeStart": 803,
+    "timeEnd": 851,
+    "timeLabel": "13:23 – 14:11",
+    "description": "At enterprise scale with tens of thousands of skills, loading all metadata is infeasible. A lightweight RAG pipeline uses embeddings to scan skill descriptions, retrieving only the top relevant ones to pass to the agent's context window, enabling progressive disclosure at massive scale.",
+    "quote": "At that scale, you don't even load all the metadata into the prompt. >> Oh, you don't? >> No, you use a lightweight retrieval system, a a rag pipeline.",
+    "accentColor": "#7a39bb",
+    "svgTemplate": "flow",
+    "svgData": {
+      "steps": [
+        "User Prompt",
+        "RAG Retrieval (Embeddings)",
+        "Agent Context Window"
+      ],
+      "sublabels": [
+        "Scan 40k+ Descriptions",
+        "Select Top 5 Relevant Skills",
+        "Load & Execute"
+      ]
+    }
+  },
+  {
+    "id": 9,
+    "title": "The Narrowing Role of Multi-Agent Systems",
+    "timeStart": 851,
+    "timeEnd": 1004,
+    "timeLabel": "14:11 – 16:44",
+    "description": "Multi-agent systems are not dead but are becoming niche. They are still needed for true asynchronous parallelism (multiple agents working simultaneously) and distinct security postures. For most other tasks, a single agent with dynamic skills is more elegant and operationally simpler than a swarm.",
+    "quote": "Multi-agent systems aren't dead, but their role is getting much, much narrower. >> Okay, when do you still use them? >> You still need them for genuine asynchronous parallelism.",
+    "accentColor": "#a13544",
+    "svgTemplate": "comparison",
+    "svgData": {
+      "left": {
+        "title": "Multi-Agent Systems",
+        "icon": "🐝",
+        "lines": [
+          "Asynchronous Parallelism",
+          "Differing Security Postures",
+          "Complex Orchestration",
+          "High Operational Overhead"
+        ],
+        "footer": "Niche Use Cases"
+      },
+      "right": {
+        "title": "Single Agent + Skills",
+        "icon": "🤖",
+        "lines": [
+          "Dynamic Specialization",
+          "Simplified Management",
+          "Elegant Solution",
+          "Lower Operational Overhead"
+        ],
+        "footer": "General Use Cases"
+      }
+    }
+  },
+  {
+    "id": 10,
+    "title": "Skill Failure Modes",
+    "timeStart": 1004,
+    "timeEnd": 1141,
+    "timeLabel": "16:44 – 19:01",
+    "description": "Poorly designed skills can actively degrade performance or be ignored. Key failure modes include trigger failure (vague descriptions), execution failure (messy instructions), token budget failure (unoptimized data), and regression (breaking existing functionality).",
+    "quote": "They found that 19% of poorly designed skills actually caused the agent to perform worse than having no skill at all. >> Wait, worse? >> It actively subtracted baseline capability from the foundation model.",
+    "accentColor": "#4f98a3",
+    "svgTemplate": "tree",
+    "svgData": {
+      "root": "Skill Failure Modes",
+      "children": [
+        "Trigger Failure",
+        "Execution Failure",
+        "Token Budget Failure",
+        "Regression"
+      ],
+      "sublabels": [
+        "Vague Descriptions",
+        "Messy Instructions",
+        "Large Unoptimized Data",
+        "Conflicting Triggers"
+      ],
+      "note": "Poorly designed skills can actively harm agent performance."
+    }
+  },
+  {
+    "id": 11,
+    "title": "Evaluation-Driven Development (EDD)",
+    "timeStart": 1141,
+    "timeEnd": 1237,
+    "timeLabel": "19:01 – 20:37",
+    "description": "To combat skill failures, EDD mandates writing three JSON evaluation cases (input, expected tools, expected output) before coding. Skills are tested in isolation using a single-skill sub-agent pattern to ensure deterministic and correct behavior before deployment.",
+    "quote": "Before you write a single line of your skill.md file, you must write three JSON evaluation cases. >> I love this concept. You have to define the input, the expected tools to be called, and the expected output format completely up front.",
+    "accentColor": "#6daa45",
+    "svgTemplate": "flow",
+    "svgData": {
+      "steps": [
+        "Define Evaluation Cases (JSON)",
+        "Develop Skill",
+        "Test in Isolation"
+      ],
+      "sublabels": [
+        "Input, Tools, Output",
+        "skill.md & Scripts",
+        "Single Skill Sub-Agent"
+      ]
+    }
+  },
+  {
+    "id": 12,
+    "title": "Trajectory Scoring: Beyond the Final Output",
+    "timeStart": 1237,
+    "timeEnd": 1342,
+    "timeLabel": "20:37 – 22:22",
+    "description": "Trajectory scoring is crucial, evaluating the exact sequence of tool calls, not just the final output. This prevents agents from 'stumbling' into correct answers through disastrous intermediate steps, especially for action-oriented skills that modify data.",
+    "quote": "A 2026 analysis by Latitude found that if you only score the final output, you'll pass 20 to 50% more test cases than if you score the trajectory, meaning the specific sequence of tool calls.",
+    "accentColor": "#da7101",
+    "svgTemplate": "chart",
+    "svgData": {
+      "title": "Scoring Method Impact",
+      "points": [
+        [
+          25,
+          80
+        ],
+        [
+          75,
+          50
+        ]
+      ],
+      "annotation": "Trajectory scoring is more rigorous",
+      "xLabel": "Scoring Method",
+      "yLabel": "Test Case Pass Rate (Relative)"
+    }
+  },
+  {
+    "id": 13,
+    "title": "The Staging Area: From Demo to Deploy",
+    "timeStart": 1342,
+    "timeEnd": 1503,
+    "timeLabel": "22:22 – 25:03",
+    "description": "A 'staging area' or sandbox is vital for testing skills safely before production. The Claude codebase analysis reveals that only 1.6% is the AI reasoning loop, while 98.4% is operational infrastructure, highlighting that skills and guardrails are the true proprietary assets.",
+    "quote": "The AI part of the AI agent is barely a rounding error. That proves your point completely. The foundation model is just a commodity. You can swap the engine out tomorrow if a cheaper one drops, but the agent skills, the guardrails, the infrastructure, that's the steering wheel and the transmission.",
+    "accentColor": "#7a39bb",
+    "svgTemplate": "ladder",
+    "svgData": {
+      "tiers": [
+        {
+          "name": "Action Allowed",
+          "color": "#437a22",
+          "desc": "Fully deployed, touches production data."
+        },
+        {
+          "name": "Draft Only",
+          "color": "#d19900",
+          "desc": "Generates outputs, human review required."
+        },
+        {
+          "name": "Read-Only",
+          "color": "#4f98a3",
+          "desc": "Evaluated safely by LLM judge, no production impact."
+        }
+      ]
+    }
+  },
+  {
+    "id": 14,
+    "title": "Meta Skills: AI Writing Its Own Instructions",
+    "timeStart": 1503,
+    "timeEnd": 1735,
+    "timeLabel": "25:03 – 28:55",
+    "description": "Meta skills allow AI to author, improve, and evolve skills. However, this requires strict human oversight, with AI-generated skills always entering at the 'draft' tier. This prevents accidental regressions or optimization for unintended metrics.",
+    "quote": "Meta skills fall apart completely without that pristine evaluation suite we just discussed. The absolute non-negotiable rule is that anything an agent writes must enter the library at the draft tier.",
+    "accentColor": "#a13544",
+    "svgTemplate": "tree",
+    "svgData": {
+      "root": "Meta Skills",
+      "children": [
+        "Authoring",
+        "Assisted Authoring (Path B)",
+        "Improvement",
+        "Library Evolution"
+      ],
+      "sublabels": [
+        "AI drafts skill from prompt",
+        "AI refines successful traces",
+        "AI optimizes existing skills",
+        "AI proposes new skills"
+      ],
+      "note": "Requires human-in-the-loop for deployment."
+    }
+  },
+  {
+    "id": 15,
+    "title": "DAG Orchestration & File Message Bus",
+    "timeStart": 1735,
+    "timeEnd": 1924,
+    "timeLabel": "28:55 – 32:04",
+    "description": "To avoid context pollution, Directed Acyclic Graphs (DAGs) orchestrate skill execution, ensuring no loops. Data is passed via a file message bus (saving to disk and passing file URIs) rather than directly into the context window, preserving LLM focus.",
+    "quote": "Production systems use DAG orchestration. >> DAG? Woah, directed acyclic graph sounds like a terrifying college math course. Are we just saying it's a one-way street so the AI doesn't get stuck in an endless loop passing files back and forth?",
+    "accentColor": "#4f98a3",
+    "svgTemplate": "flow",
+    "svgData": {
+      "steps": [
+        "Skill 1 Output (File)",
+        "DAG Orchestration",
+        "Skill 2 Input (File Path)"
+      ],
+      "sublabels": [
+        "Save to Disk",
+        "No Cycles",
+        "Context Protected"
+      ]
+    }
+  },
+  {
+    "id": 16,
+    "title": "Shifting Intelligence Left: Code Over Vibes",
+    "timeStart": 1924,
+    "timeEnd": 2007,
+    "timeLabel": "32:04 – 33:27",
+    "description": "The principle of 'shifting intelligence left' means relying on deterministic code constraints (e.g., Python scripts) rather than prompt engineering for critical logic. This ensures reliability and predictability, moving from 'vibes' to robust code.",
+    "quote": "Shifting intelligence left. It means relying on deterministic software constraints rather than prompt engineering. Don't write a system prompt yelling in all caps, 'Always validate the zip code.' >> Because it's just hoping the LLM will pay attention.",
+    "accentColor": "#6daa45",
+    "svgTemplate": "comparison",
+    "svgData": {
+      "left": {
+        "title": "Shift Left (Code)",
+        "icon": "⚙️",
+        "lines": [
+          "Deterministic Scripts",
+          "Rigid Validation",
+          "Reliable Execution",
+          "Less Prompt Dependency"
+        ],
+        "footer": "Code-based Logic"
+      },
+      "right": {
+        "title": "Shift Right (Vibes)",
+        "icon": "✨",
+        "lines": [
+          "Prompt Engineering",
+          "Hopeful Instructions",
+          "Unreliable Execution",
+          "High Prompt Dependency"
+        ],
+        "footer": "Prompt-based Logic"
+      }
+    }
+  },
+  {
+    "id": 17,
+    "title": "Enterprise Skill Adoption & Case Study",
+    "timeStart": 2007,
+    "timeEnd": 2144,
+    "timeLabel": "33:27 – 35:44",
+    "description": "Enterprises should prefer first-party skills, aggressively pin versions, and audit code. A home improvement retailer uses skills to distribute knowledge, with domain experts owning skills for project guidance, materials, and delivery, creating a distributed, expert-driven system.",
+    "quote": "They use it to distribute knowledge. Historically, an AI team at a retailer tries to build one massive monolithic retail assistant. It inevitably fails because AI engineers don't know the nuances of plumbing codes or lumber grading. With agent skills, the ownership is distributed to the actual domain experts.",
+    "accentColor": "#da7101",
+    "svgTemplate": "venn",
+    "svgData": {
+      "left": {
+        "title": "First-Party Skills",
+        "label": "Official Repositories"
+      },
+      "right": {
+        "title": "Third-Party Skills",
+        "label": "Community Contributions"
+      },
+      "top": {
+        "title": "Enterprise Adoption",
+        "label": "Heuristics: Audit, Pin, Prefer First-Party"
+      },
+      "center": [
+        "Distributed Knowledge",
+        "Domain Expert Ownership"
+      ]
+    }
+  },
+  {
+    "id": 18,
+    "title": "The Strategic Moat of Codified Knowledge",
+    "timeStart": 2144,
+    "timeEnd": 2156,
+    "timeLabel": "35:44 – 35:56",
+    "description": "Agent skills allow companies to codify and version control the procedural memory and institutional knowledge of their best employees. This creates a durable, proprietary asset that competitors cannot easily replicate, unlike the base foundation models.",
+    "quote": "But they cannot buy the codified, version controlled institutional knowledge of your best employees.",
+    "accentColor": "#7a39bb",
+    "svgTemplate": "comparison",
+    "svgData": {
+      "left": {
+        "title": "Foundation Model",
+        "icon": "💡",
+        "lines": [
+          "Commoditized",
+          "Accessible to Competitors",
+          "Easily Swappable"
+        ],
+        "footer": "Low Barrier to Entry"
+      },
+      "right": {
+        "title": "Agent Skills / Knowledge",
+        "icon": "🏆",
+        "lines": [
+          "Proprietary Asset",
+          "Unique to Company",
+          "Durable & Version Controlled"
+        ],
+        "footer": "High Strategic Value"
+      }
+    }
+  },
+  {
+    "id": 19,
+    "title": "Building the Future: Practical Application",
+    "timeStart": 2156,
+    "timeEnd": 2309,
+    "timeLabel": "35:56 – 38:29",
+    "description": "The shift is towards structured, deterministic environments around the model, not just making the model smarter. Practical application involves building skills, starting small with a single expert workflow, and iterating through read-only tiers before full deployment.",
+    "quote": "It's a profound shift. We are moving away from trying to make the model inherently smarter and instead focusing on making the environment around the model highly structured and deterministic.",
+    "accentColor": "#a13544",
+    "svgTemplate": "flow",
+    "svgData": {
+      "steps": [
+        "Identify Expert Workflow",
+        "Draft Skill & Evals",
+        "Deploy to Read-Only Tier"
+      ],
+      "sublabels": [
+        "Record & Document",
+        "skill.md, JSON Evals",
+        "LLM Judge / Human Review"
+      ]
+    }
+  },
+  {
+    "id": 20,
+    "title": "The Evolving Corporate Subconscious",
+    "timeStart": 2309,
+    "timeEnd": 2341,
+    "timeLabel": "38:29 – 39:01",
+    "description": "As agent skills digitize and version control the knowledge of top employees, companies develop a 'corporate subconscious' of thousands of skills. This raises profound questions about company culture and operations in a future where institutional knowledge outlives individuals.",
+    "quote": "If agent skills effectively digitize and version control the procedural memory, the exact how-to knowledge of your absolute best employees, what happens to a company's culture and its operations a decade from now when its corporate subconscious consists of hundreds of thousands of skills that outlive any individual human worker?",
+    "accentColor": "#4f98a3",
+    "svgTemplate": "cycle",
+    "svgData": {
+      "center": "🔄",
+      "steps": [
+        "Individual Expertise",
+        "Skill Codification",
+        "Institutional Knowledge",
+        "Corporate Subconscious"
+      ]
+    }
+  }
+]

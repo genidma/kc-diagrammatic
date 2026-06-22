@@ -1,0 +1,447 @@
+[
+  {
+    "id": 0,
+    "title": "Introduction to Cloud Architecture",
+    "timeStart": 19,
+    "timeEnd": 51,
+    "timeLabel": "0:19 – 0:51",
+    "description": "The podcast begins by introducing the concept of architecting an internet-accessible application on Google Cloud. It emphasizes that there isn't a single 'right' way to do it and sets the stage for exploring one possible approach.",
+    "quote": "Imagine you are a Cloud architect for foo.com an internet accessible application.",
+    "accentColor": "#4f98a3",
+    "svgTemplate": "flow",
+    "svgData": {
+      "steps": [
+        "Define Application Needs",
+        "Explore Google Cloud Solutions",
+        "Build and Iterate"
+      ],
+      "sublabels": [
+        "Understanding foo.com requirements",
+        "Choosing the right services",
+        "Implementing a reference architecture"
+      ]
+    }
+  },
+  {
+    "id": 1,
+    "title": "Basic Web Application Setup",
+    "timeStart": 51,
+    "timeEnd": 147,
+    "timeLabel": "0:51 – 1:47",
+    "description": "This segment details the initial setup of a web application, starting with a single web server handling user requests via DNS resolution to an IP address. It then introduces an application server for business logic.",
+    "quote": "The request from the user's computer goes to the DNS server, which responds back with an IP address that is used by the user's computer to then make a connection to our server.",
+    "accentColor": "#6daa45",
+    "svgTemplate": "flow",
+    "svgData": {
+      "steps": [
+        "User Request",
+        "DNS Resolution",
+        "Server Connection"
+      ],
+      "sublabels": [
+        "Typing foo.com",
+        "IP Address Retrieval",
+        "Web/App Server Interaction"
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "title": "Database Fundamentals",
+    "timeStart": 147,
+    "timeEnd": 202,
+    "timeLabel": "1:47 – 2:02",
+    "description": "The discussion shifts to the role of databases in modern web applications. It highlights that applications typically use one or more databases to store information, which can be either relational or nonrelational depending on the data and use case.",
+    "quote": "Now every modern web application leverages one or more databases to store information.",
+    "accentColor": "#da7101",
+    "svgTemplate": "venn",
+    "svgData": {
+      "left": {
+        "title": "Relational Databases",
+        "label": "Structured data, tables, predefined schema"
+      },
+      "right": {
+        "title": "Nonrelational Databases",
+        "label": "Flexible schema, various data models"
+      },
+      "top": {
+        "title": "Database Types",
+        "label": "Storing application data"
+      },
+      "center": [
+        "Data Storage",
+        "Information Retrieval"
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "title": "Scaling Strategies: Vertical vs. Horizontal",
+    "timeStart": 205,
+    "timeEnd": 251,
+    "timeLabel": "2:05 – 2:51",
+    "description": "As application popularity grows, the need to scale servers arises. The segment explains two primary scaling methods: vertical scaling (increasing resources of a single server) and horizontal scaling (adding more servers), with a preference for horizontal scaling due to its flexibility.",
+    "quote": "You will find that scaling horizontally, or scaling out, is almost always a good idea because it gives you more flexibility.",
+    "accentColor": "#7a39bb",
+    "svgTemplate": "comparison",
+    "svgData": {
+      "left": {
+        "title": "Vertical Scaling",
+        "icon": "⬆️",
+        "lines": [
+          "Increase CPU/Memory of existing server",
+          "Limited by hardware capabilities",
+          "Can be simpler initially"
+        ],
+        "footer": "Scaling Up"
+      },
+      "right": {
+        "title": "Horizontal Scaling",
+        "icon": "➡️",
+        "lines": [
+          "Add more servers to the pool",
+          "More flexible and resilient",
+          "Requires load balancing"
+        ],
+        "footer": "Scaling Out"
+      }
+    }
+  },
+  {
+    "id": 4,
+    "title": "Load Balancing Explained",
+    "timeStart": 302,
+    "timeEnd": 353,
+    "timeLabel": "3:02 – 3:53",
+    "description": "With multiple servers, a load balancer becomes essential to distribute incoming traffic. The segment covers different load balancing algorithms like round robin and global, and introduces the concept of an internal load balancer for application servers.",
+    "quote": "So we need something to balance the load to our servers. That's where load balancer comes in.",
+    "accentColor": "#a13544",
+    "svgTemplate": "flow",
+    "svgData": {
+      "steps": [
+        "Traffic Ingress",
+        "Load Balancer Distribution",
+        "Server Response"
+      ],
+      "sublabels": [
+        "User requests arrive",
+        "Algorithms (Round Robin, Global)",
+        "Distributes to available servers"
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "title": "Database Choices: SQL vs. NoSQL",
+    "timeStart": 353,
+    "timeEnd": 445,
+    "timeLabel": "3:53 – 4:45",
+    "description": "This section delves deeper into database selection, differentiating between relational (SQL) databases for ACID-compliant transaction processing and nonrelational (NoSQL) databases for handling massive data volumes and generating insights. It also touches upon the use of in-memory caches like Redis.",
+    "quote": "For applications with heavy transaction processing where you need to ensure that the transactions are accurate, consistent, isolated, and durable, also called ACID, relational databases should be used.",
+    "accentColor": "#4f98a3",
+    "svgTemplate": "comparison",
+    "svgData": {
+      "left": {
+        "title": "Relational Databases (SQL)",
+        "icon": "🗄️",
+        "lines": [
+          "ACID compliance",
+          "Structured data in tables",
+          "Good for transactions"
+        ],
+        "footer": "e.g., MySQL, PostgreSQL"
+      },
+      "right": {
+        "title": "Nonrelational Databases (NoSQL)",
+        "icon": "📜",
+        "lines": [
+          "Handles large volumes",
+          "Flexible schema",
+          "Good for analytics and insights"
+        ],
+        "footer": "e.g., MongoDB, Cassandra"
+      }
+    }
+  },
+  {
+    "id": 6,
+    "title": "Handling Media and Static Content",
+    "timeStart": 509,
+    "timeEnd": 610,
+    "timeLabel": "5:09 – 6:10",
+    "description": "The podcast explains that media files (images, videos) and static content should not be stored on web servers. Instead, they are best kept in external Blob storage, with metadata in the database. Caching these frequently accessed files closer to users globally is crucial for performance and cost.",
+    "quote": "Such object files are better stored in an external Blob storage.",
+    "accentColor": "#6daa45",
+    "svgTemplate": "funnel",
+    "svgData": {
+      "stages": [
+        "Upload Media to Blob Storage",
+        "Metadata in Database",
+        "Cache Content Globally"
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "title": "Asynchronous Messaging and Notifications",
+    "timeStart": 610,
+    "timeEnd": 629,
+    "timeLabel": "6:10 – 6:29",
+    "description": "For tasks like sending push or email notifications, an asynchronous messaging service is recommended. This involves a server subscribing to a queue to send out notifications, decoupling the notification process from the main application flow.",
+    "quote": "For those, we can use an asynchronous messaging service, push notifications in it, and then have a server subscribe to that queue to send those notifications out to users through another service.",
+    "accentColor": "#da7101",
+    "svgTemplate": "flow",
+    "svgData": {
+      "steps": [
+        "Event Trigger",
+        "Publish to Queue",
+        "Process and Notify"
+      ],
+      "sublabels": [
+        "e.g., User action",
+        "Asynchronous messaging service",
+        "Subscribed server sends notification"
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "title": "Analytics: Real-time vs. Batch Data",
+    "timeStart": 630,
+    "timeEnd": 751,
+    "timeLabel": "6:30 – 7:51",
+    "description": "Analytics involves ingesting both real-time data (from servers, IoT devices) and batch data (from logs). This data is then processed, enriched, and stored in a data warehouse for analysis, dashboard creation, and machine learning model training. The concepts of ETL and data lakes are also briefly mentioned.",
+    "quote": "We usually have two types of data to ingest into the analytics system, the real-time data and the batch data.",
+    "accentColor": "#7a39bb",
+    "svgTemplate": "comparison",
+    "svgData": {
+      "left": {
+        "title": "Real-time Data",
+        "icon": "⚡",
+        "lines": [
+          "Continuous stream",
+          "e.g., ClickStream, IoT sensors",
+          "Immediate processing"
+        ],
+        "footer": "Low Latency Ingestion"
+      },
+      "right": {
+        "title": "Batch Data",
+        "icon": "📦",
+        "lines": [
+          "Collected over time",
+          "e.g., Server logs",
+          "Processed periodically (ETL)"
+        ],
+        "footer": "Scheduled Processing"
+      }
+    }
+  },
+  {
+    "id": 9,
+    "title": "Security and Network Considerations",
+    "timeStart": 803,
+    "timeEnd": 843,
+    "timeLabel": "8:03 – 8:43",
+    "description": "Holistic monitoring and security are crucial. This involves securing the architecture within a private network using firewalls, managing access for different teams (developers, DevOps, analysts), and implementing security measures for applications, data, and infrastructure.",
+    "quote": "We also need to make sure all this is secure in a private network. Use a firewall to ensure that the servers that should not be exposed to the public internet are not and the ones that should talk to each other can.",
+    "accentColor": "#a13544",
+    "svgTemplate": "tree",
+    "svgData": {
+      "root": "Security & Network",
+      "children": [
+        "Private Network",
+        "Firewall Rules",
+        "Access Control (IAM)",
+        "Data Encryption"
+      ],
+      "sublabels": [
+        "Isolate resources",
+        "Control traffic flow",
+        "Principle of least privilege",
+        "At rest and in transit"
+      ],
+      "note": "Ensuring a secure and well-managed cloud environment."
+    }
+  },
+  {
+    "id": 10,
+    "title": "Google Cloud Compute Options",
+    "timeStart": 911,
+    "timeEnd": 1057,
+    "timeLabel": "9:11 – 10:57",
+    "description": "The segment explores various Google Cloud compute services for application infrastructure: Cloud Run and App Engine for serverless container/app hosting, Google Kubernetes Engine (GKE) for container orchestration, and Compute Engine for virtual machines offering maximum control but requiring more management.",
+    "quote": "Serverless options such as Cloud Run, App Engine would be great picks. Both are serverless and scale with no effort as your traffic grows.",
+    "accentColor": "#4f98a3",
+    "svgTemplate": "ladder",
+    "svgData": {
+      "tiers": [
+        {
+          "name": "Compute Engine",
+          "color": "#437a22",
+          "desc": "Maximum control, virtual machines, requires significant management."
+        },
+        {
+          "name": "Google Kubernetes Engine (GKE)",
+          "color": "#d19900",
+          "desc": "Container orchestration, flexibility, control over nodes, Autopilot option."
+        },
+        {
+          "name": "Cloud Run / App Engine",
+          "color": "#4f98a3",
+          "desc": "Serverless, automatic scaling, minimal operational overhead."
+        }
+      ]
+    }
+  },
+  {
+    "id": 11,
+    "title": "Global Load Balancing and CDN",
+    "timeStart": 1105,
+    "timeEnd": 1223,
+    "timeLabel": "11:05 – 12:23",
+    "description": "Cloud Load Balancing offers a distributed, software-defined system capable of handling high query volumes. It enables a single IP address for global users and can serve requests from the nearest server. Cloud CDN integrates to cache frequently accessed content at edge locations for reduced latency and cost.",
+    "quote": "It also offers internal load balancing for our internal application servers so we can route traffic amongst them as needed.",
+    "accentColor": "#6daa45",
+    "svgTemplate": "flow",
+    "svgData": {
+      "steps": [
+        "Global Traffic Ingress",
+        "Load Balancer Distribution",
+        "Edge Caching (CDN)"
+      ],
+      "sublabels": [
+        "Single IP, Anycast",
+        "Route to closest/available server",
+        "Cache static assets near users"
+      ]
+    }
+  },
+  {
+    "id": 12,
+    "title": "Database Services on Google Cloud",
+    "timeStart": 1314,
+    "timeEnd": 1515,
+    "timeLabel": "13:14 – 15:15",
+    "description": "Google Cloud offers a range of database services: Cloud SQL and Spanner for relational needs (Spanner for massive scale), and Firestore, Bigtable, and Memorystore for nonrelational use cases (document, wide-column, and in-memory caching respectively).",
+    "quote": "Spanner is best for massive scale relational database that needs horizontal scaling.",
+    "accentColor": "#da7101",
+    "svgTemplate": "venn",
+    "svgData": {
+      "left": {
+        "title": "Relational Databases",
+        "label": "Cloud SQL, Spanner"
+      },
+      "right": {
+        "title": "Nonrelational Databases",
+        "label": "Firestore, Bigtable, Memorystore"
+      },
+      "top": {
+        "title": "Database Options",
+        "label": "Managed services for various needs"
+      },
+      "center": [
+        "Managed Services",
+        "Scalability & Performance"
+      ]
+    }
+  },
+  {
+    "id": 13,
+    "title": "Data Analytics Pipeline",
+    "timeStart": 1520,
+    "timeEnd": 1704,
+    "timeLabel": "15:20 – 17:04",
+    "description": "The analytics pipeline involves ingesting data via Pub/Sub, processing it with Dataflow or Dataproc, and storing it in BigQuery, a serverless data warehouse. BigQuery supports SQL queries, acts as a data lake, and offers ML capabilities, enabling dashboard creation with Looker or Data Studio.",
+    "quote": "BigQuery is a serverless data warehouse that supports SQL queries and can scale to petabytes of data.",
+    "accentColor": "#7a39bb",
+    "svgTemplate": "funnel",
+    "svgData": {
+      "stages": [
+        "Data Ingestion (Pub/Sub)",
+        "Data Processing (Dataflow/Dataproc)",
+        "Data Warehousing & Analysis (BigQuery)"
+      ]
+    }
+  },
+  {
+    "id": 14,
+    "title": "Machine Learning and AI Services",
+    "timeStart": 1708,
+    "timeEnd": 1813,
+    "timeLabel": "17:08 – 18:13",
+    "description": "For ML/AI projects, data from BigQuery or Cloud Storage can be used to train models in Vertex AI. The recommendation is to start with pre-trained models, then use AutoML for custom models, and finally write custom code for advanced users with significant ML experience.",
+    "quote": "My recommendation is to always start with a pretrained model. See if it works for you.",
+    "accentColor": "#a13544",
+    "svgTemplate": "ladder",
+    "svgData": {
+      "tiers": [
+        {
+          "name": "Custom Model Code",
+          "color": "#437a22",
+          "desc": "Maximum flexibility, requires deep ML/DS expertise (TensorFlow, PyTorch)."
+        },
+        {
+          "name": "AutoML",
+          "color": "#d19900",
+          "desc": "Train custom models with less code, supports common use cases."
+        },
+        {
+          "name": "Pretrained Models",
+          "color": "#4f98a3",
+          "desc": "Quickest to implement, covers most common use cases."
+        }
+      ]
+    }
+  },
+  {
+    "id": 15,
+    "title": "Security Deep Dive: Data, Access, and Application",
+    "timeStart": 1814,
+    "timeEnd": 2028,
+    "timeLabel": "18:14 – 20:28",
+    "description": "Security is a shared responsibility. Google Cloud provides tools for data encryption (at rest, in transit, in use), access control (Cloud Identity for authentication, Cloud IAM for authorization), and application security (reCAPTCHA, Cloud Armor, API Gateway). Security Command Center offers continuous monitoring.",
+    "quote": "Well, data is always encrypted, addressed, and in transit when on Google Cloud.",
+    "accentColor": "#4f98a3",
+    "svgTemplate": "tree",
+    "svgData": {
+      "root": "Security Measures",
+      "children": [
+        "Data Security",
+        "Access Management",
+        "Application Security",
+        "Monitoring & Threat Detection"
+      ],
+      "sublabels": [
+        "Encryption, DLP",
+        "Identity & Access Management",
+        "reCAPTCHA, Cloud Armor, API Gateway",
+        "Security Command Center"
+      ],
+      "note": "Comprehensive security across the cloud environment."
+    }
+  },
+  {
+    "id": 16,
+    "title": "CI/CD Pipeline on Google Cloud",
+    "timeStart": 2052,
+    "timeEnd": 2131,
+    "timeLabel": "20:52 – 21:31",
+    "description": "The CI/CD process involves writing code, pushing it to Cloud Build for packaging, testing, and scanning. Cloud Deploy then manages deployment to staging and production. Container images are stored in Artifact Registry for deployment to GKE or Cloud Run.",
+    "quote": "As a developer, I would write the code for an application. I can use Cloud Code within IDE, push the code to Cloud Build, which then packages and tests it, runs vulnerability scans on it, binary authorization, then checks for trusted images.",
+    "accentColor": "#6daa45",
+    "svgTemplate": "flow",
+    "svgData": {
+      "steps": [
+        "Code Development",
+        "Build & Test (Cloud Build)",
+        "Deploy (Cloud Deploy)"
+      ],
+      "sublabels": [
+        "IDE integration",
+        "Packaging, scanning, authorization",
+        "Staging to Production"
+      ]
+    }
+  }
+]
