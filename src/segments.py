@@ -19,6 +19,13 @@ from openai import OpenAI
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
+# Use Windows system cert store so corporate/proxy CAs are trusted
+try:
+    import truststore
+    truststore.inject_into_ssl()
+except ImportError:
+    pass
+
 # Load environment variables
 ROOT = Path(__file__).parent.parent
 load_dotenv(dotenv_path=ROOT / ".env")
@@ -213,6 +220,11 @@ Return your response ONLY as a valid JSON array of objects. Do not include markd
     except Exception as e:
         print(f"\n❌  Failed to complete Layer 2 segment extraction: {e}")
         sys.exit(1)
+
+
+# Alias run to run_segmentation for compatibility with remote expectation if needed
+def run(input_path: Path = INPUT_PATH, output_path: Path = OUTPUT_PATH) -> Path:
+    return run_segmentation(input_path, output_path)
 
 
 if __name__ == "__main__":
