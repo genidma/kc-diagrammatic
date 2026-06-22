@@ -17,19 +17,19 @@ header{padding:12px 20px;background:var(--surf);border-bottom:1px solid var(--di
 .pbar{height:3px;background:#4f98a3;width:0%;transition:width .3s;}
 
 /* Main Layout: Split Screen on Desktop */
-.content-layout{display:flex;gap:24px;max-width:1200px;margin:0 auto;padding:16px;}
-.player-pane{width:460px;flex-shrink:0;position:sticky;top:68px;align-self:flex-start;}
+.content-layout{display:flex;gap:24px;max-width:1600px;margin:0 auto;padding:16px;}
+.player-pane{width:560px;flex-shrink:0;position:sticky;top:68px;align-self:flex-start;}
 .video-wrapper{width:100%;aspect-ratio:16/9;background:#000;border-radius:8px;overflow:hidden;border:1px solid var(--border);box-shadow:0 8px 30px rgba(0,0,0,0.3);}
 .segments-pane{flex:1;min-width:0;display:flex;flex-direction:column;}
 
-.seg-card{display:flex;gap:10px;padding:14px 10px;border-bottom:1px solid var(--div);position:relative;transition:all 0.2s ease;align-items:flex-start;cursor:pointer;border-radius:8px;}
+.seg-card{display:flex;gap:16px;padding:14px 10px;border-bottom:1px solid var(--div);position:relative;transition:all 0.2s ease;align-items:flex-start;cursor:pointer;border-radius:8px;}
 .seg-card:hover{background:color-mix(in srgb, var(--text) 3%, var(--surf));}
 .seg-card.active{background:color-mix(in srgb,#4f98a3 8%,var(--surf));border-left:3px solid #4f98a3;padding-left:7px;}
 .seg-left{width:46px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:3px;padding-top:2px;}
 .badge-time{font-size:.65rem;font-variant-numeric:tabular-nums;font-weight:700;padding:2px 5px;border-radius:4px;white-space:nowrap;}
 .badge-sub{font-size:.55rem;color:var(--muted);}
 .badge-dur{font-size:.5rem;color:var(--muted);}
-.seg-vis{width:180px;flex-shrink:0;}
+.seg-vis{width:260px;flex-shrink:0;}
 .seg-text{flex:1;min-width:0;}
 .seg-title{font-size:.8rem;font-weight:700;margin-bottom:2px;line-height:1.25;}
 .seg-range{font-size:.6rem;color:var(--muted);margin-bottom:4px;font-variant-numeric:tabular-nums;}
@@ -38,7 +38,6 @@ header{padding:12px 20px;background:var(--surf);border-bottom:1px solid var(--di
 .yt-link{display:inline-block;margin-top:6px;font-size:.6rem;text-decoration:none;font-weight:600;}
 .yt-link:hover{text-decoration:underline;}
 .seg-accent-bar{width:3px;border-radius:2px;align-self:stretch;flex-shrink:0;opacity:.4;}
-
 @media(max-width:900px){
   .content-layout{flex-direction:column;}
   .player-pane{width:100%;position:sticky;top:49px;z-index:25;background:var(--bg);padding:8px 0;}

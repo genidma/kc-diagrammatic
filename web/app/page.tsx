@@ -66,7 +66,7 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="flex-1 flex flex-col items-center justify-center p-6 max-w-5xl mx-auto w-full">
+      <main className="flex-1 flex flex-col items-center justify-center p-6 max-w-[95%] mx-auto w-full">
         {!htmlContent ? (
           <div className="w-full max-w-2xl py-12 flex flex-col items-center text-center">
             <h2 className="text-4xl font-extrabold tracking-tight mb-4 bg-gradient-to-b from-white to-zinc-400 bg-clip-text text-transparent sm:text-5xl">
