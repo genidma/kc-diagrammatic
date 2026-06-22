@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ title or 'Visual Podcast Companion' }}</title>
+<title>{{ podcast_title or 'Visual Podcast Companion' }}</title>
 <style>
 :root,[data-theme="light"]{--bg:#f2f1ed;--surf:#ffffff;--surf2:#f4f3ef;--border:#d4d1ca;--text:#28251d;--muted:#7a7974;--div:#dcd9d5;}
 [data-theme="dark"]{--bg:#171614;--surf:#1c1b19;--surf2:#201f1d;--border:#393836;--text:#cdccca;--muted:#797876;--div:#262523;}
@@ -15,9 +15,16 @@ header{padding:12px 20px;background:var(--surf);border-bottom:1px solid var(--di
 .tog{background:none;border:1px solid var(--border);color:var(--text);padding:5px 10px;border-radius:6px;cursor:pointer;font-size:.72rem;white-space:nowrap;}
 .pbar-wrap{height:3px;background:var(--div);position:sticky;top:49px;z-index:29;}
 .pbar{height:3px;background:#4f98a3;width:0%;transition:width .3s;}
-.main{padding:12px 16px 80px;max-width:900px;margin:0 auto;}
-.seg-card{display:flex;gap:10px;padding:14px 0;border-bottom:1px solid var(--div);position:relative;transition:background .2s;align-items:flex-start;}
-.seg-card.active{background:color-mix(in srgb,#4f98a3 6%,var(--surf));border-radius:8px;padding-left:6px;}
+
+/* Main Layout: Split Screen on Desktop */
+.content-layout{display:flex;gap:24px;max-width:1200px;margin:0 auto;padding:16px;}
+.player-pane{width:460px;flex-shrink:0;position:sticky;top:68px;align-self:flex-start;}
+.video-wrapper{width:100%;aspect-ratio:16/9;background:#000;border-radius:8px;overflow:hidden;border:1px solid var(--border);box-shadow:0 8px 30px rgba(0,0,0,0.3);}
+.segments-pane{flex:1;min-width:0;display:flex;flex-direction:column;}
+
+.seg-card{display:flex;gap:10px;padding:14px 10px;border-bottom:1px solid var(--div);position:relative;transition:all 0.2s ease;align-items:flex-start;cursor:pointer;border-radius:8px;}
+.seg-card:hover{background:color-mix(in srgb, var(--text) 3%, var(--surf));}
+.seg-card.active{background:color-mix(in srgb,#4f98a3 8%,var(--surf));border-left:3px solid #4f98a3;padding-left:7px;}
 .seg-left{width:46px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:3px;padding-top:2px;}
 .badge-time{font-size:.65rem;font-variant-numeric:tabular-nums;font-weight:700;padding:2px 5px;border-radius:4px;white-space:nowrap;}
 .badge-sub{font-size:.55rem;color:var(--muted);}
@@ -28,67 +35,144 @@ header{padding:12px 20px;background:var(--surf);border-bottom:1px solid var(--di
 .seg-range{font-size:.6rem;color:var(--muted);margin-bottom:4px;font-variant-numeric:tabular-nums;}
 .seg-desc{font-size:.68rem;color:var(--muted);line-height:1.5;}
 .seg-quote{margin-top:5px;font-size:.63rem;font-style:italic;border-left:2px solid;padding-left:7px;}
-.yt-link{display:inline-block;margin-top:6px;font-size:.6rem;text-decoration:none;}
+.yt-link{display:inline-block;margin-top:6px;font-size:.6rem;text-decoration:none;font-weight:600;}
 .yt-link:hover{text-decoration:underline;}
 .seg-accent-bar{width:3px;border-radius:2px;align-self:stretch;flex-shrink:0;opacity:.4;}
-@media(max-width:600px){.seg-vis{display:none;}}
+
+@media(max-width:900px){
+  .content-layout{flex-direction:column;}
+  .player-pane{width:100%;position:sticky;top:49px;z-index:25;background:var(--bg);padding:8px 0;}
+  .seg-vis{display:none;}
+}
 </style>
 </head>
 <body>
 <header>
   <div class="hd">
     <h1>🎧 {{ podcast_title or 'Podcast Follow-Along Companion' }}</h1>
-    <p>Open YouTube beside this &nbsp;&bull;&nbsp; {{ segments | length }} segments &nbsp;&bull;&nbsp; {{ total_duration }} total &nbsp;&bull;&nbsp; SVG diagrams inline per segment</p>
+    <p>{{ segments | length }} segments &nbsp;&bull;&nbsp; {{ total_duration }} total &nbsp;&bull;&nbsp; Interactive Video Sync</p>
   </div>
   <button class="tog" id="tog-btn" onclick="toggleTheme()">☀️ Light</button>
 </header>
 <div class="pbar-wrap"><div class="pbar" id="pbar"></div></div>
-<div class="main">
 
-{% for segment in segments %}
-<div class="seg-card" id="card-{{ segment.id }}" data-start="{{ segment.timeStart }}" data-end="{{ segment.timeEnd }}">
-  <div class="seg-left">
-    <div class="badge-time" style="color:{{ segment.accentColor }};background:color-mix(in srgb,{{ segment.accentColor }} 15%,var(--surf2))">
-      {{ segment.timeLabel.split(' – ')[0].split(' - ')[0] }}
+<div class="content-layout">
+  <!-- Left Side: Interactive Video Player -->
+  <div class="player-pane">
+    <div class="video-wrapper">
+      <div id="player" style="width:100%; height:100%;"></div>
     </div>
-    <div class="badge-sub">Seg {{ "%02d" | format(segment.id + 1) }}</div>
-    <div class="badge-dur">{{ segment.timeEnd - segment.timeStart }}s</div>
   </div>
-  <div class="seg-vis">
-    {{ segment.rendered_svg }}
-  </div>
-  <div class="seg-text">
-    <div class="seg-title" style="color:{{ segment.accentColor }}">{{ "%02d" | format(segment.id + 1) }}. {{ segment.title }}</div>
-    <div class="seg-range">{{ segment.timeLabel }}</div>
-    <div class="seg-desc">{{ segment.description }}</div>
-    {% if segment.quote %}
-    <div class="seg-quote" style="border-color:{{ segment.accentColor }};color:{{ segment.accentColor }}">{{ segment.quote }}</div>
-    {% endif %}
-    <a class="yt-link" href="{{ youtube_url }}&t={{ segment.timeStart }}s" target="_blank" rel="noopener" style="color:{{ segment.accentColor }}">&#x25BA; Watch from {{ segment.timeLabel.split(' – ')[0].split(' - ')[0] }} on YouTube</a>
-  </div>
-  <div class="seg-accent-bar" style="background:{{ segment.accentColor }}"></div>
-</div>
-{% endfor %}
 
+  <!-- Right Side: Segments List -->
+  <div class="segments-pane">
+    {% for segment in segments %}
+    <div class="seg-card" id="card-{{ segment.id }}" data-start="{{ segment.timeStart }}" data-end="{{ segment.timeEnd }}" onclick="seekTo({{ segment.timeStart }})">
+      <div class="seg-left">
+        <div class="badge-time" style="color:{{ segment.accentColor }};background:color-mix(in srgb,{{ segment.accentColor }} 15%,var(--surf2))">
+          {{ segment.timeLabel.split(' – ')[0].split(' - ')[0] }}
+        </div>
+        <div class="badge-sub">Seg {{ "%02d" | format(segment.id + 1) }}</div>
+        <div class="badge-dur">{{ segment.timeEnd - segment.timeStart }}s</div>
+      </div>
+      <div class="seg-vis">
+        {{ segment.rendered_svg }}
+      </div>
+      <div class="seg-text">
+        <div class="seg-title" style="color:{{ segment.accentColor }}">{{ "%02d" | format(segment.id + 1) }}. {{ segment.title }}</div>
+        <div class="seg-range">{{ segment.timeLabel }}</div>
+        <div class="seg-desc">{{ segment.description }}</div>
+        {% if segment.quote %}
+        <div class="seg-quote" style="border-color:{{ segment.accentColor }};color:{{ segment.accentColor }}">{{ segment.quote }}</div>
+        {% endif %}
+        <span class="yt-link" style="color:{{ segment.accentColor }}">&#x25BA; Watch from {{ segment.timeLabel.split(' – ')[0].split(' - ')[0] }}</span>
+      </div>
+      <div class="seg-accent-bar" style="background:{{ segment.accentColor }}"></div>
+    </div>
+    {% endfor %}
+  </div>
 </div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
 <script>
+var player;
+// Extract video ID from URL
+var videoUrl = "{{ youtube_url }}";
+var videoId = "";
+try {
+  if (videoUrl.includes("v=")) {
+    videoId = videoUrl.split("v=")[1].split("&")[0];
+  } else if (videoUrl.includes("youtu.be/")) {
+    videoId = videoUrl.split("youtu.be/")[1].split("?")[0];
+  }
+} catch (e) {
+  videoId = "uYURYHhpmKc"; // Default fallback
+}
+
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('player', {
+    videoId: videoId,
+    playerVars: {
+      'playsinline': 1,
+      'rel': 0,
+      'modestbranding': 1
+    },
+    events: {
+      'onStateChange': onPlayerStateChange
+    }
+  });
+}
+
+function seekTo(seconds) {
+  if (player && player.seekTo) {
+    player.seekTo(seconds, true);
+    player.playVideo();
+  }
+}
+
+var timeUpdateInterval;
+function onPlayerStateChange(event) {
+  if (event.data == YT.PlayerState.PLAYING) {
+    timeUpdateInterval = setInterval(checkTime, 250);
+  } else {
+    clearInterval(timeUpdateInterval);
+  }
+}
+
+function checkTime() {
+  if (!player || !player.getCurrentTime) return;
+  var curTime = player.getCurrentTime();
+  
+  var cards = document.querySelectorAll('.seg-card');
+  var activeCard = null;
+  
+  cards.forEach(function(card) {
+    var start = parseFloat(card.getAttribute('data-start'));
+    var end = parseFloat(card.getAttribute('data-end'));
+    if (curTime >= start && curTime <= end) {
+      activeCard = card;
+    }
+  });
+  
+  if (activeCard) {
+    var alreadyActive = activeCard.classList.contains('active');
+    if (!alreadyActive) {
+      cards.forEach(function(c) { c.classList.remove('active'); });
+      activeCard.classList.add('active');
+      activeCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+  
+  var duration = player.getDuration();
+  var p = duration > 0 ? (curTime / duration) * 100 : 0;
+  document.getElementById('pbar').style.width = Math.min(p, 100) + '%';
+}
+
 function toggleTheme(){
   var d=document.documentElement,c=d.getAttribute('data-theme');
   d.setAttribute('data-theme',c==='dark'?'light':'dark');
   document.getElementById('tog-btn').textContent=c==='dark'?'Dark':'Light';
 }
-function onScroll(){
-  var cards=document.querySelectorAll('.seg-card');
-  var mid=window.scrollY+window.innerHeight*0.38;
-  var best=-1,bestD=1e9;
-  cards.forEach(function(c,i){var t=c.getBoundingClientRect().top+window.scrollY;var d=Math.abs(t-mid);if(d<bestD){bestD=d;best=i;}});
-  cards.forEach(function(c,i){c.classList.toggle('active',i===best);});
-  var h=document.body.scrollHeight-window.innerHeight;
-  var p=h>0?(window.scrollY/h)*100:0;
-  document.getElementById('pbar').style.width=Math.min(p,100)+'%';
-}
-window.addEventListener('scroll',onScroll,{passive:true});
-onScroll();
 </script>
 </body>
 </html>
