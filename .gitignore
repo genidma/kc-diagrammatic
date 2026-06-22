@@ -1,0 +1,54 @@
+# ============================================================
+# Visual Podcast Companion — .gitignore
+# ============================================================
+
+# --- API Keys & Secrets (NEVER commit these) ---
+.env
+*.env.local
+*.env.*.local
+
+# --- Python ---
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+.Python
+venv/
+env/
+ENV/
+.venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+
+# --- Pipeline intermediate & output files ---
+# These are generated files — regenerate by running the pipeline
+data/raw_transcript.json
+data/segments.json
+output/
+
+# --- Next.js / Node ---
+web/node_modules/
+web/.next/
+web/out/
+web/.vercel/
+web/npm-debug.log*
+web/yarn-debug.log*
+web/yarn-error.log*
+
+# --- OS & Editor ---
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# --- Logs ---
+*.log
+logs/

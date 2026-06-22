@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent Skills - Follow-Along Companion</title>
+<style>
+:root,[data-theme="light"]{--bg:#f2f1ed;--surf:#ffffff;--surf2:#f4f3ef;--border:#d4d1ca;--text:#28251d;--muted:#7a7974;--div:#dcd9d5;}
+[data-theme="dark"]{--bg:#171614;--surf:#1c1b19;--surf2:#201f1d;--border:#393836;--text:#cdccca;--muted:#797876;--div:#262523;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;}
+header{padding:12px 20px;background:var(--surf);border-bottom:1px solid var(--div);position:sticky;top:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:12px;}
+.hd h1{font-size:.9rem;font-weight:700;line-height:1.2;}
+.hd p{font-size:.67rem;color:var(--muted);margin-top:1px;}
+.tog{background:none;border:1px solid var(--border);color:var(--text);padding:5px 10px;border-radius:6px;cursor:pointer;font-size:.72rem;white-space:nowrap;}
+.pbar-wrap{height:3px;background:var(--div);position:sticky;top:49px;z-index:29;}
+.pbar{height:3px;background:#4f98a3;width:0%;transition:width .3s;}
+.main{padding:12px 16px 80px;max-width:900px;margin:0 auto;}
+.seg-card{display:flex;gap:10px;padding:14px 0;border-bottom:1px solid var(--div);position:relative;transition:background .2s;align-items:flex-start;}
+.seg-card.active{background:color-mix(in srgb,#4f98a3 6%,var(--surf));border-radius:8px;padding-left:6px;}
+.seg-left{width:46px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:3px;padding-top:2px;}
+.badge-time{font-size:.65rem;font-variant-numeric:tabular-nums;font-weight:700;padding:2px 5px;border-radius:4px;white-space:nowrap;}
+.badge-sub{font-size:.55rem;color:var(--muted);}
+.badge-dur{font-size:.5rem;color:var(--muted);}
+.seg-vis{width:180px;flex-shrink:0;}
+.seg-text{flex:1;min-width:0;}
+.seg-title{font-size:.8rem;font-weight:700;margin-bottom:2px;line-height:1.25;}
+.seg-range{font-size:.6rem;color:var(--muted);margin-bottom:4px;font-variant-numeric:tabular-nums;}
+.seg-desc{font-size:.68rem;color:var(--muted);line-height:1.5;}
+.seg-quote{margin-top:5px;font-size:.63rem;font-style:italic;border-left:2px solid;padding-left:7px;}
+.yt-link{display:inline-block;margin-top:6px;font-size:.6rem;text-decoration:none;}
+.yt-link:hover{text-decoration:underline;}
+.seg-accent-bar{width:3px;border-radius:2px;align-self:stretch;flex-shrink:0;opacity:.4;}
+@media(max-width:600px){.seg-vis{display:none;}}
+</style>
+</head>
+<body>
+<header>
+  <div class="hd">
+    <h1>&#x1F3A7; Agent Skills Podcast &mdash; Follow-Along Companion</h1>
+    <p>Open YouTube beside this &nbsp;&bull;&nbsp; 14 segments &nbsp;&bull;&nbsp; 23:42 total &nbsp;&bull;&nbsp; SVG diagrams inline per segment</p>
+  </div>
+  <button class="tog" id="tog-btn" onclick="toggleTheme()">&#x2600;&#xFE0F; Light</button>
+</header>
+<div class="pbar-wrap"><div class="pbar" id="pbar"></div></div>
+<div class="main">
+<div class="seg-card" id="card-0" data-start="0" data-end="105">
+  <div class="seg-left">
+    <div class="badge-time" style="color:#4f98a3;background:color-mix(in srgb,#4f98a3 15%,var(--surf2))">0:00</div>
+    <div class="badge-sub">Seg 01</div>
+    <div class="badge-dur">105s</div>
+  </div>
+  <div class="seg-vis"><svg viewBox="0 0 180 96" xmlns="http://www.w3.org/2000/svg" style="background:var(--surf2);border-radius:6px;display:block;width:100%;height:96px"><line x1="18" y1="85" x2="175" y2="85" stroke="#4f98a3" stroke-width=".8" opacity=".6"/><line x1="18" y1="8" x2="18" y2="85" stroke="#4f98a3" stroke-width=".8" opacity=".6"/><polyline points="18,14 45,16 72,22 98,36 122,56 148,74 172,83" fill="none" stroke="#4f98a3" stroke-width="2.5"/><line x1="122" y1="20" x2="122" y2="56" stroke="#a13544" stroke-width="1" stroke-dasharray="3,2"/><text x="126" y="28" font-size="6" fill="#a13544">drops off</text><text x="126" y="36" font-size="6" fill="#a13544">a cliff</text><text x="97" y="94" text-anchor="middle" font-size="6" fill="#888">Context window fills</text><text x="6" y="50" font-size="6" fill="#888" transform="rotate(-90 6 50)" text-anchor="middle">Accuracy</text><text x="97" y="8" text-anchor="middle" font-size="7" fill="#4f98a3" font-weight="bold">Performance vs Context Size</text></svg></div>
+  <div class="seg-text">
+    <div class="seg-title" style="color:#4f98a3">01. The Context Paradox</div>
+    <div class="seg-range">0:00 &ndash; 1:45</div>
+    <div class="seg-desc">More context = dumber results. Attention dilution means every extra token competes for the model's focus. Performance drops off a cliff long before the context window fills up.</div>
+    <div class="seg-quote" style="border-color:#4f98a3;color:#4f98a3">The science shows it actually gets dumber.</div>
+    <a class="yt-link" href="https://www.youtube.com/watch?v=uYURYHhpmKc&t=0s" target="_blank" rel="noopener" style="color:#4f98a3">&#x25BA; Watch from 0:00 on YouTube</a>
+  </div>
+  <div class="seg-accent-bar" style="background:#4f98a3"></div>
+</div>
+<div class="seg-card" id="card-1" data-start="106" data-end="194">
+  <div class="seg-left">
+    <div class="badge-time" style="color:#6daa45;background:color-mix(in srgb,#6daa45 15%,var(--surf2))">1:46</div>
+    <div class="badge-sub">Seg 02</div>
+    <div class="badge-dur">88s</div>
+  </div>
+  <div class="seg-vis"><svg viewBox="0 0 180 96" xmlns="http://www.w3.org/2000/svg" style="background:var(--surf2);border-radius:6px;display:block;width:100%;height:96px"><rect x="55" y="4" width="70" height="14" rx="3" fill="#6daa45" opacity=".85"/><text x="90" y="14" text-anchor="middle" font-size="7.5" fill="#fff" font-weight="bold">skill-name/ (folder)</text><line x1="90" y1="18" x2="90" y2="26" stroke="#6daa45" stroke-width="1"/><line x1="22" y1="26" x2="158" y2="26" stroke="#6daa45" stroke-width="1"/><line x1="22" y1="26" x2="22" y2="32" stroke="#6daa45" stroke-width="1"/><line x1="68" y1="26" x2="68" y2="32" stroke="#6daa45" stroke-width="1"/><line x1="112" y1="26" x2="112" y2="32" stroke="#6daa45" stroke-width="1"/><line x1="158" y1="26" x2="158" y2="32" stroke="#6daa45" stroke-width="1"/><rect x="5" y="32" width="34" height="16" rx="2" fill="#6daa45" opacity=".65"/><text x="22" y="43" text-anchor="middle" font-size="6.5" fill="#fff">skill.md</text><rect x="51" y="32" width="34" height="16" rx="2" fill="#6daa45" opacity=".65"/><text x="68" y="43" text-anchor="middle" font-size="6.5" fill="#fff">scripts/</text><rect x="95" y="32" width="34" height="16" rx="2" fill="#6daa45" opacity=".65"/><text x="112" y="43" text-anchor="middle" font-size="6.5" fill="#fff">refs/</text><rect x="141" y="32" width="34" height="16" rx="2" fill="#6daa45" opacity=".65"/><text x="158" y="43" text-anchor="middle" font-size="6.5" fill="#fff">assets/</text><text x="22" y="62" text-anchor="middle" font-size="5.5" fill="#6daa45">brain</text><text x="68" y="62" text-anchor="middle" font-size="5.5" fill="#6daa45">code</text><text x="112" y="62" text-anchor="middle" font-size="5.5" fill="#6daa45">PDFs</text><text x="158" y="62" text-anchor="middle" font-size="5.5" fill="#6daa45">schemas</text><text x="90" y="80" text-anchor="middle" font-size="6" fill="#888">skill.md is mandatory - all others optional</text></svg></div>
+  <div class="seg-text">
+    <div class="seg-title" style="color:#6daa45">02. Anatomy of a Skill Folder</div>
+    <div class="seg-range">1:46 &ndash; 3:14</div>
+    <div class="seg-desc">A skill is literally just a folder: skill.md (brain/metadata), scripts/ (deterministic code), references/ (dense PDFs), assets/ (JSON schemas and templates).</div>
+    <div class="seg-quote" style="border-color:#6daa45;color:#6daa45">At its core, an agent skill is literally just a folder on your file system.</div>
+    <a class="yt-link" href="https://www.youtube.com/watch?v=uYURYHhpmKc&t=106s" target="_blank" rel="noopener" style="color:#6daa45">&#x25BA; Watch from 1:46 on YouTube</a>
+  </div>
+  <div class="seg-accent-bar" style="background:#6daa45"></div>
+</div>
+<div class="seg-card" id="card-2" data-start="195" data-end="276">
+  <div class="seg-left">
+    <div class="badge-time" style="color:#da7101;background:color-mix(in srgb,#da7101 15%,var(--surf2))">3:15</div>
+    <div class="badge-sub">Seg 03</div>
+    <div class="badge-dur">81s</div>
+  </div>
+  <div class="seg-vis"><svg viewBox="0 0 180 96" xmlns="http://www.w3.org/2000/svg" style="background:var(--surf2);border-radius:6px;display:block;width:100%;height:96px"><rect x="4" y="4" width="80" height="86" rx="5" fill="#da7101" opacity=".1" stroke="#da7101" stroke-width="1"/><rect x="4" y="4" width="80" height="14" rx="5" fill="#da7101" opacity=".7"/><text x="44" y="14" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">Path A: SME</text><text x="44" y="46" text-anchor="middle" font-size="22">&#x1F4C4;</text><text x="44" y="64" text-anchor="middle" font-size="6.5" fill="#888">Plain English</text><text x="44" y="73" text-anchor="middle" font-size="6.5" fill="#888">-&gt; skill.md</text><text x="44" y="83" text-anchor="middle" font-size="6" fill="#da7101">No coding needed</text><rect x="96" y="4" width="80" height="86" rx="5" fill="#006494" opacity=".1" stroke="#006494" stroke-width="1"/><rect x="96" y="4" width="80" height="14" rx="5" fill="#006494" opacity=".7"/><text x="136" y="14" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">Path B: Dev</text><text x="136" y="46" text-anchor="middle" font-size="22">&#x1F4BB;</text><text x="136" y="64" text-anchor="middle" font-size="6.5" fill="#888">Capture trace</text><text x="136" y="73" text-anchor="middle" font-size="6.5" fill="#888">-&gt; skill folder</text><text x="136" y="83" text-anchor="middle" font-size="6" fill="#006494">Reusable logic</text></svg></div>
+  <div class="seg-text">
+    <div class="seg-title" style="color:#da7101">03. Two Creation Paths</div>
+    <div class="seg-range">3:15 &ndash; 4:36</div>
+    <div class="seg-desc">Path A: Subject matter experts (HR, compliance) write skill.md in plain English - no coding. Path B: Developers capture a successful agent trace and crystallise it into a reusable skill.</div>
+    <div class="seg-quote" style="border-color:#da7101;color:#da7101">It really democratizes agent creation.</div>
+    <a class="yt-link" href="https://www.youtube.com/watch?v=uYURYHhpmKc&t=195s" target="_blank" rel="noopener" style="color:#da7101">&#x25BA; Watch from 3:15 on YouTube</a>
+  </div>
+  <div class="seg-accent-bar" style="background:#da7101"></div>
+</div>
+<div class="seg-card" id="card-3" data-start="277" data-end="354">
+  <div class="seg-left">
+    <div class="badge-time" style="color:#7a39bb;background:color-mix(in srgb,#7a39bb 15%,var(--surf2))">4:37</div>
+    <div class="badge-sub">Seg 04</div>
+    <div class="badge-dur">77s</div>
+  </div>
+  <div class="seg-vis"><svg viewBox="0 0 180 96" xmlns="http://www.w3.org/2000/svg" style="background:var(--surf2);border-radius:6px;display:block;width:100%;height:96px"><circle cx="62" cy="52" r="35" fill="#006494" opacity=".15" stroke="#006494" stroke-width="1.5"/><circle cx="118" cy="52" r="35" fill="#7a39bb" opacity=".15" stroke="#7a39bb" stroke-width="1.5"/><circle cx="90" cy="22" r="20" fill="#da7101" opacity=".2" stroke="#da7101" stroke-width="1.5"/><text x="42" y="56" text-anchor="middle" font-size="7.5" fill="#006494" font-weight="bold">MCP</text><text x="42" y="66" text-anchor="middle" font-size="6" fill="#888">Reach</text><text x="138" y="56" text-anchor="middle" font-size="7.5" fill="#7a39bb" font-weight="bold">Skills</text><text x="138" y="66" text-anchor="middle" font-size="6" fill="#888">Know-how</text><text x="90" y="16" text-anchor="middle" font-size="6" fill="#da7101" font-weight="bold">agents.md</text><text x="90" y="25" text-anchor="middle" font-size="5.5" fill="#888">Global Rules</text><text x="90" y="64" text-anchor="middle" font-size="6" fill="#888">compose</text><text x="90" y="72" text-anchor="middle" font-size="6" fill="#888">together</text></svg></div>
+  <div class="seg-text">
+    <div class="seg-title" style="color:#7a39bb">04. Skills vs MCP vs agents.md</div>
+    <div class="seg-range">4:37 &ndash; 5:54</div>
+    <div class="seg-desc">MCP gives REACH (connects to Salesforce/BigQuery). Skills give KNOW-HOW (step-by-step procedural logic). agents.md = global always-on project rules. They compose beautifully together.</div>
+    <div class="seg-quote" style="border-color:#7a39bb;color:#7a39bb">They compose beautifully together.</div>
+    <a class="yt-link" href="https://www.youtube.com/watch?v=uYURYHhpmKc&t=277s" target="_blank" rel="noopener" style="color:#7a39bb">&#x25BA; Watch from 4:37 on YouTube</a>
+  </div>
+  <div class="seg-accent-bar" style="background:#7a39bb"></div>
+</div>
+<div class="seg-card" id="card-4" data-start="355" data-end="491">
+  <div class="seg-left">
+    <div class="badge-time" style="color:#d19900;background:color-mix(in srgb,#d19900 15%,var(--surf2))">5:55</div>
+    <div class="badge-sub">Seg 05</div>
+    <div class="badge-dur">136s</div>
+  </div>
+  <div class="seg-vis"><svg viewBox="0 0 180 96" xmlns="http://www.w3.org/2000/svg" style="background:var(--surf2);border-radius:6px;display:block;width:100%;height:96px"><rect x="22" y="8" width="52" height="72" rx="3" fill="#a13544" opacity=".8"/><text x="48" y="26" text-anchor="middle" font-size="6.5" fill="#fff" font-weight="bold">Without</text><text x="48" y="42" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">150K</text><text x="48" y="54" text-anchor="middle" font-size="6.5" fill="#fff">tokens</text><text x="48" y="90" text-anchor="middle" font-size="6" fill="#888">Full dump</text><text x="90" y="52" text-anchor="middle" font-size="22" fill="#d19900">&#x2192;</text><text x="90" y="70" text-anchor="middle" font-size="13" fill="#d19900" font-weight="bold">-98%</text><rect x="116" y="76" width="52" height="4" rx="2" fill="#6daa45" opacity=".9"/><text x="142" y="68" text-anchor="middle" font-size="12" fill="#6daa45" font-weight="bold">6K</text><text x="142" y="56" text-anchor="middle" font-size="6.5" fill="#6daa45">With Skills</text><text x="142" y="90" text-anchor="middle" font-size="6" fill="#888">On-demand</text></svg></div>
+  <div class="seg-text">
+    <div class="seg-title" style="color:#d19900">05. Context Drought &amp; 98% Savings</div>
+    <div class="seg-range">5:55 &ndash; 8:11</div>
+    <div class="seg-desc">Across 18 frontier models, performance degrades silently as input grows. Skills cut active context by up to 98%: 150K tokens reduced to 6K tokens. The model stays sharp because it only sees what matters.</div>
+    <div class="seg-quote" style="border-color:#d19900;color:#d19900">Performance degrades silently as the input grows.</div>
+    <a class="yt-link" href="https://www.youtube.com/watch?v=uYURYHhpmKc&t=355s" target="_blank" rel="noopener" style="color:#d19900">&#x25BA; Watch from 5:55 on YouTube</a>
+  </div>
+  <div class="seg-accent-bar" style="background:#d19900"></div>
+</div>
+<div class="seg-card" id="card-5" data-start="492" data-end="532">
+  <div class="seg-left">
+    <div class="badge-time" style="color:#4f98a3;background:color-mix(in srgb,#4f98a3 15%,var(--surf2))">8:12</div>
+    <div class="badge-sub">Seg 06</div>
+    <div class="badge-dur">40s</div>
+  </div>
+  <div class="seg-vis"><svg viewBox="0 0 180 96" xmlns="http://www.w3.org/2000/svg" style="background:var(--surf2);border-radius:6px;display:block;width:100%;height:96px"><polygon points="5,6 175,6 148,36 32,36" fill="#4f98a3" opacity=".2" stroke="#4f98a3" stroke-width="1.5"/><polygon points="32,38 148,38 128,64 52,64" fill="#4f98a3" opacity=".4" stroke="#4f98a3" stroke-width="1.5"/><polygon points="52,66 128,66 108,86 72,86" fill="#4f98a3" opacity=".75" stroke="#4f98a3" stroke-width="1.5"/><text x="90" y="26" text-anchor="middle" font-size="8" fill="#4f98a3" font-weight="bold">40,000 Skills</text><text x="90" y="54" text-anchor="middle" font-size="7" fill="#888">Embedding Search</text><text x="90" y="79" text-anchor="middle" font-size="8.5" fill="#fff" font-weight="bold">Top 5 Only</text></svg></div>
+  <div class="seg-text">
+    <div class="seg-title" style="color:#4f98a3">06. Enterprise Scale: 40,000 Skills</div>
+    <div class="seg-range">8:12 &ndash; 8:52</div>
+    <div class="seg-desc">At 40K skills, even loading all metadata overflows the context window. Solution: a RAG pipeline - fast embeddings scan all 40K descriptions, retrieve the top 5 most relevant, pass only those 5 to the agent.</div>
+    <div class="seg-quote" style="border-color:#4f98a3;color:#4f98a3">Progressive disclosure taken to the next level.</div>
+    <a class="yt-link" href="https://www.youtube.com/watch?v=uYURYHhpmKc&t=492s" target="_blank" rel="noopener" style="color:#4f98a3">&#x25BA; Watch from 8:12 on YouTube</a>
+  </div>
+  <div class="seg-accent-bar" style="background:#4f98a3"></div>
+</div>
+<div class="seg-card" id="card-6" data-start="533" data-end="605">
+  <div class="seg-left">
+    <div class="badge-time" style="color:#a13544;background:color-mix(in srgb,#a13544 15%,var(--surf2))">8:53</div>
+    <div class="badge-sub">Seg 07</div>
+    <div class="badge-dur">72s</div>
+  </div>
+  <div class="seg-vis"><svg viewBox="0 0 180 96" xmlns="http://www.w3.org/2000/svg" style="background:var(--surf2);border-radius:6px;display:block;width:100%;height:96px"><text x="44" y="10" text-anchor="middle" font-size="6.5" fill="#a13544" font-weight="bold">Swarm (fragile)</text><circle cx="44" cy="30" r="10" fill="#a13544" opacity=".7"/><text x="44" y="34" text-anchor="middle" font-size="7" fill="#fff">M</text><circle cx="18" cy="56" r="9" fill="#a13544" opacity=".5"/><text x="18" y="60" text-anchor="middle" font-size="7" fill="#fff">W</text><circle cx="44" cy="60" r="9" fill="#a13544" opacity=".5"/><text x="44" y="64" text-anchor="middle" font-size="7" fill="#fff">W</text><circle cx="70" cy="56" r="9" fill="#a13544" opacity=".5"/><text x="70" y="60" text-anchor="middle" font-size="7" fill="#fff">W</text><line x1="44" y1="40" x2="18" y2="47" stroke="#a13544" stroke-width="1"/><line x1="44" y1="40" x2="44" y2="51" stroke="#a13544" stroke-width="1"/><line x1="44" y1="40" x2="70" y2="47" stroke="#a13544" stroke-width="1"/><text x="44" y="82" text-anchor="middle" font-size="6" fill="#a13544">complex + fragile</text><line x1="90" y1="4" x2="90" y2="92" stroke="#888" stroke-width="1" stroke-dasharray="3,3"/><text x="90" y="50" text-anchor="middle" font-size="22" fill="#d19900">&#x2192;</text><text x="136" y="10" text-anchor="middle" font-size="6.5" fill="#6daa45" font-weight="bold">1 Agent + Skills</text><circle cx="136" cy="34" r="14" fill="#6daa45" opacity=".8"/><text x="136" y="39" text-anchor="middle" font-size="14" fill="#fff">&#x1F916;</text><rect x="112" y="54" width="22" height="11" rx="2" fill="#6daa45" opacity=".6"/><text x="123" y="63" text-anchor="middle" font-size="6" fill="#fff">Skill A</text><rect x="142" y="54" width="22" height="11" rx="2" fill="#6daa45" opacity=".6"/><text x="153" y="63" text-anchor="middle" font-size="6" fill="#fff">Skill B</text><line x1="130" y1="48" x2="123" y2="54" stroke="#6daa45" stroke-width="1"/><line x1="142" y1="48" x2="153" y2="54" stroke="#6daa45" stroke-width="1"/><text x="136" y="82" text-anchor="middle" font-size="6" fill="#6daa45">elegant + portable</text></svg></div>
+  <div class="seg-text">
+    <div class="seg-title" style="color:#a13544">07. Multi-Agent vs Single Agent + Skills</div>
+    <div class="seg-range">8:53 &ndash; 10:05</div>
+    <div class="seg-desc">Multi-agent still needed for async parallelism and differing security postures (HR vs marketing). For everything else, one general-purpose agent + skills folder is vastly more elegant.</div>
+    <div class="seg-quote" style="border-color:#a13544;color:#a13544">Almost everything else - the swarm approach is dying.</div>
+    <a class="yt-link" href="https://www.youtube.com/watch?v=uYURYHhpmKc&t=533s" target="_blank" rel="noopener" style="color:#a13544">&#x25BA; Watch from 8:53 on YouTube</a>
+  </div>
+  <div class="seg-accent-bar" style="background:#a13544"></div>
+</div>
+<div class="seg-card" id="card-7" data-start="606" data-end="700">
+  <div class="seg-left">
+    <div class="badge-time" style="color:#a12c7b;background:color-mix(in srgb,#a12c7b 15%,var(--surf2))">10:06</div>
+    <div class="badge-sub">Seg 08</div>
+    <div class="badge-dur">94s</div>
+  </div>
+  <div class="seg-vis"><svg viewBox="0 0 180 96" xmlns="http://www.w3.org/2000/svg" style="background:var(--surf2);border-radius:6px;display:block;width:100%;height:96px"><rect x="4" y="6" width="172" height="16" rx="3" fill="#a12c7b" opacity=".12" stroke="#a12c7b" stroke-width="1"/><text x="12" y="17" font-size="7" fill="#a12c7b" font-weight="bold">Trigger</text><text x="58" y="17" font-size="6.5" fill="#888">Wrong skill fires or stays silent</text><rect x="4" y="26" width="172" height="16" rx="3" fill="#a13544" opacity=".12" stroke="#a13544" stroke-width="1"/><text x="12" y="37" font-size="7" fill="#a13544" font-weight="bold">Execution</text><text x="58" y="37" font-size="6.5" fill="#888">Hallucinations from messy instructions</text><rect x="4" y="46" width="172" height="16" rx="3" fill="#da7101" opacity=".12" stroke="#da7101" stroke-width="1"/><text x="12" y="57" font-size="7" fill="#da7101" font-weight="bold">Token Budget</text><text x="72" y="57" font-size="6.5" fill="#888">Huge PDF blows context window</text><rect x="4" y="66" width="172" height="16" rx="3" fill="#d19900" opacity=".12" stroke="#d19900" stroke-width="1"/><text x="12" y="77" font-size="7" fill="#d19900" font-weight="bold">Regression</text><text x="65" y="77" font-size="6.5" fill="#888">New skill hijacks existing routing</text><text x="90" y="92" text-anchor="middle" font-size="5.5" fill="#a12c7b">19% worse outcomes | 56% non-invocation rate</text></svg></div>
+  <div class="seg-text">
+    <div class="seg-title" style="color:#a12c7b">08. 4 Failure Modes (19% Make It Worse)</div>
+    <div class="seg-range">10:06 &ndash; 11:40</div>
+    <div class="seg-desc">Skills Bench 2025: 19% of poorly designed skills actively hurt the agent. Versel study: 56% non-invocation rate. Four failure modes: Trigger, Execution, Token Budget, Regression.</div>
+    <div class="seg-quote" style="border-color:#a12c7b;color:#a12c7b">19% caused the agent to perform worse than having no skill at all.</div>
+    <a class="yt-link" href="https://www.youtube.com/watch?v=uYURYHhpmKc&t=606s" target="_blank" rel="noopener" style="color:#a12c7b">&#x25BA; Watch from 10:06 on YouTube</a>
+  </div>
+  <div class="seg-accent-bar" style="background:#a12c7b"></div>
+</div>
+<div class="seg-card" id="card-8" data-start="701" data-end="821">
+  <div class="seg-left">
+    <div class="badge-time" style="color:#006494;background:color-mix(in srgb,#006494 15%,var(--surf2))">11:41</div>
+    <div class="badge-sub">Seg 09</div>
+    <div class="badge-dur">120s</div>
+  </div>
+  <div class="seg-vis"><svg viewBox="0 0 180 96" xmlns="http://www.w3.org/2000/svg" style="background:var(--surf2);border-radius:6px;display:block;width:100%;height:96px"><rect x="4" y="4" width="72" height="13" rx="2" fill="#006494" opacity=".7"/><text x="40" y="13" text-anchor="middle" font-size="6.5" fill="#fff">1. Write 3 JSON evals</text><line x1="40" y1="17" x2="40" y2="24" stroke="#006494" stroke-width="1"/><rect x="4" y="24" width="72" height="13" rx="2" fill="#006494" opacity=".5"/><text x="40" y="33" text-anchor="middle" font-size="6.5" fill="#fff">2. Write skill.md</text><line x1="40" y1="37" x2="40" y2="44" stroke="#006494" stroke-width="1"/><rect x="4" y="44" width="72" height="13" rx="2" fill="#6daa45" opacity=".6"/><text x="40" y="53" text-anchor="middle" font-size="6.5" fill="#fff">3. Pass -&gt; deploy</text><line x1="80" y1="4" x2="80" y2="92" stroke="#888" stroke-width="1" stroke-dasharray="2,2"/><text x="132" y="10" text-anchor="middle" font-size="7" fill="#006494" font-weight="bold">Trajectory Scoring</text><rect x="86" y="14" width="88" height="12" rx="2" fill="#006494" opacity=".4"/><text x="130" y="23" text-anchor="middle" font-size="6" fill="#fff">get_profile</text><text x="174" y="23" font-size="8" fill="#6daa45">&#x2713;</text><rect x="86" y="30" width="88" height="12" rx="2" fill="#006494" opacity=".4"/><text x="130" y="39" text-anchor="middle" font-size="6" fill="#fff">check_order</text><text x="174" y="39" font-size="8" fill="#6daa45">&#x2713;</text><rect x="86" y="46" width="88" height="12" rx="2" fill="#a13544" opacity=".5"/><text x="130" y="55" text-anchor="middle" font-size="6" fill="#fff">delete_address !</text><text x="174" y="55" font-size="8" fill="#a13544">&#x2717;</text><text x="130" y="72" text-anchor="middle" font-size="6" fill="#a13544">FAIL - disaster path!</text><text x="40" y="78" text-anchor="middle" font-size="5.5" fill="#888">tests written before code</text></svg></div>
+  <div class="seg-text">
+    <div class="seg-title" style="color:#006494">09. EDD + Trajectory Scoring</div>
+    <div class="seg-range">11:41 &ndash; 13:41</div>
+    <div class="seg-desc">Write 3 JSON eval cases BEFORE writing skill.md. Trajectory scoring: grade the exact tool-call sequence, not just the final output. A correct answer via a disastrous path still fails.</div>
+    <div class="seg-quote" style="border-color:#006494;color:#006494">If you do not know what success looks like, you have no business writing the instructions.</div>
+    <a class="yt-link" href="https://www.youtube.com/watch?v=uYURYHhpmKc&t=701s" target="_blank" rel="noopener" style="color:#006494">&#x25BA; Watch from 11:41 on YouTube</a>
+  </div>
+  <div class="seg-accent-bar" style="background:#006494"></div>
+</div>
+<div class="seg-card" id="card-9" data-start="822" data-end="976">
+  <div class="seg-left">
+    <div class="badge-time" style="color:#437a22;background:color-mix(in srgb,#437a22 15%,var(--surf2))">13:42</div>
+    <div class="badge-sub">Seg 10</div>
+    <div class="badge-dur">154s</div>
+  </div>
+  <div class="seg-vis"><svg viewBox="0 0 180 96" xmlns="http://www.w3.org/2000/svg" style="background:var(--surf2);border-radius:6px;display:block;width:100%;height:96px"><line x1="14" y1="8" x2="14" y2="90" stroke="#888" stroke-width="1.5"/><line x1="166" y1="8" x2="166" y2="90" stroke="#888" stroke-width="1.5"/><rect x="14" y="72" width="152" height="18" rx="3" fill="#4f98a3" opacity=".85"/><text x="90" y="84" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">Read-Only (LLM-as-judge)</text><rect x="30" y="48" width="120" height="18" rx="3" fill="#d19900" opacity=".85"/><text x="90" y="60" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">Draft-Only (human approves)</text><rect x="46" y="24" width="88" height="18" rx="3" fill="#437a22" opacity=".9"/><text x="90" y="36" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">Action-Allowed</text><text x="90" y="15" text-anchor="middle" font-size="6" fill="#437a22">Pass-to-K: must succeed 8x in a row</text><line x1="46" y1="19" x2="134" y2="19" stroke="#437a22" stroke-width="1" stroke-dasharray="3,2"/></svg></div>
+  <div class="seg-text">
+    <div class="seg-title" style="color:#437a22">10. 3-Tier Production Ladder + Pass-to-K</div>
+    <div class="seg-range">13:42 &ndash; 16:16</div>
+    <div class="seg-desc">Skills graduate: Read-Only to Draft-Only to Action-Allowed. Pass-to-K: 60% single-run success = only 1.6% chance of passing 8 runs in a row. Ruthlessly exposes inconsistent skills.</div>
+    <div class="seg-quote" style="border-color:#437a22;color:#437a22">98.4% of Claude Code codebase is operational infrastructure. Only 1.6% is the AI prompt loop.</div>
+    <a class="yt-link" href="https://www.youtube.com/watch?v=uYURYHhpmKc&t=822s" target="_blank" rel="noopener" style="color:#437a22">&#x25BA; Watch from 13:42 on YouTube</a>
+  </div>
+  <div class="seg-accent-bar" style="background:#437a22"></div>
+</div>
+<div class="seg-card" id="card-10" data-start="977" data-end="1054">
+  <div class="seg-left">
+    <div class="badge-time" style="color:#da7101;background:color-mix(in srgb,#da7101 15%,var(--surf2))">16:17</div>
+    <div class="badge-sub">Seg 11</div>
+    <div class="badge-dur">77s</div>
+  </div>
+  <div class="seg-vis"><svg viewBox="0 0 180 96" xmlns="http://www.w3.org/2000/svg" style="background:var(--surf2);border-radius:6px;display:block;width:100%;height:96px"><circle cx="90" cy="44" r="30" fill="none" stroke="#da7101" stroke-width="1.5" stroke-dasharray="4,2"/><text x="90" y="50" text-anchor="middle" font-size="16">&#x1F916;</text><rect x="62" y="2" width="56" height="13" rx="3" fill="#da7101" opacity=".75"/><text x="90" y="12" text-anchor="middle" font-size="6.5" fill="#fff">Authoring</text><rect x="148" y="38" width="30" height="13" rx="3" fill="#da7101" opacity=".75"/><text x="163" y="48" text-anchor="middle" font-size="6" fill="#fff">Trace</text><rect x="62" y="76" width="56" height="13" rx="3" fill="#da7101" opacity=".75"/><text x="90" y="86" text-anchor="middle" font-size="6.5" fill="#fff">Lib. Evolution</text><rect x="2" y="38" width="36" height="13" rx="3" fill="#da7101" opacity=".75"/><text x="20" y="48" text-anchor="middle" font-size="6" fill="#fff">Improve</text></svg></div>
+  <div class="seg-text">
+    <div class="seg-title" style="color:#da7101">11. Meta-Skills: AI Writes Its Own Skills</div>
+    <div class="seg-range">16:17 &ndash; 17:34</div>
+    <div class="seg-desc">4 types: Authoring, Trace Capture (Path B automated), Improvement, Library Evolution. NON-NEGOTIABLE: AI-authored skills ALWAYS enter at Draft tier - never auto-deployed.</div>
+    <div class="seg-quote" style="border-color:#da7101;color:#da7101">Anything an agent writes must enter the library at the draft tier.</div>
+    <a class="yt-link" href="https://www.youtube.com/watch?v=uYURYHhpmKc&t=977s" target="_blank" rel="noopener" style="color:#da7101">&#x25BA; Watch from 16:17 on YouTube</a>
+  </div>
+  <div class="seg-accent-bar" style="background:#da7101"></div>
+</div>
+<div class="seg-card" id="card-11" data-start="1055" data-end="1161">
+  <div class="seg-left">
+    <div class="badge-time" style="color:#7a39bb;background:color-mix(in srgb,#7a39bb 15%,var(--surf2))">17:35</div>
+    <div class="badge-sub">Seg 12</div>
+    <div class="badge-dur">106s</div>
+  </div>
+  <div class="seg-vis"><svg viewBox="0 0 180 96" xmlns="http://www.w3.org/2000/svg" style="background:var(--surf2);border-radius:6px;display:block;width:100%;height:96px"><rect x="2" y="32" width="48" height="22" rx="5" fill="#7a39bb" opacity=".8"/><text x="26" y="46" text-anchor="middle" font-size="7.5" fill="#fff" font-weight="bold">Skill A</text><rect x="66" y="32" width="48" height="22" rx="5" fill="#7a39bb" opacity=".8"/><text x="90" y="46" text-anchor="middle" font-size="7.5" fill="#fff" font-weight="bold">Skill B</text><rect x="130" y="32" width="48" height="22" rx="5" fill="#7a39bb" opacity=".8"/><text x="154" y="46" text-anchor="middle" font-size="7.5" fill="#fff" font-weight="bold">Skill C</text><defs><marker id="a" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 z" fill="#888"/></marker></defs><line x1="50" y1="43" x2="66" y2="43" stroke="#888" stroke-width="1.5" marker-end="url(#a)"/><line x1="114" y1="43" x2="130" y2="43" stroke="#888" stroke-width="1.5" marker-end="url(#a)"/><rect x="44" y="58" width="24" height="11" rx="2" fill="#d19900" opacity=".8"/><text x="56" y="67" text-anchor="middle" font-size="5.5" fill="#fff">file1.json</text><line x1="56" y1="58" x2="56" y2="54" stroke="#d19900" stroke-width="1" stroke-dasharray="2,2"/><rect x="108" y="58" width="24" height="11" rx="2" fill="#d19900" opacity=".8"/><text x="120" y="67" text-anchor="middle" font-size="5.5" fill="#fff">file2.json</text><line x1="120" y1="58" x2="120" y2="54" stroke="#d19900" stroke-width="1" stroke-dasharray="2,2"/><text x="90" y="84" text-anchor="middle" font-size="7" fill="#7a39bb" font-weight="bold">Shift Intelligence Left</text><text x="90" y="93" text-anchor="middle" font-size="5.5" fill="#888">code validates . LLM reasons . no context pollution</text></svg></div>
+  <div class="seg-text">
+    <div class="seg-title" style="color:#7a39bb">12. DAG + File Message Bus</div>
+    <div class="seg-range">17:35 &ndash; 19:21</div>
+    <div class="seg-desc">Skills chain via a Directed Acyclic Graph (no infinite loops). Large outputs saved to disk; next skill only receives the file path URI. Shift Intelligence Left = use Python scripts, not prompt engineering.</div>
+    <div class="seg-quote" style="border-color:#7a39bb;color:#7a39bb">You cannot use the context window as a database.</div>
+    <a class="yt-link" href="https://www.youtube.com/watch?v=uYURYHhpmKc&t=1055s" target="_blank" rel="noopener" style="color:#7a39bb">&#x25BA; Watch from 17:35 on YouTube</a>
+  </div>
+  <div class="seg-accent-bar" style="background:#7a39bb"></div>
+</div>
+<div class="seg-card" id="card-12" data-start="1162" data-end="1303">
+  <div class="seg-left">
+    <div class="badge-time" style="color:#6daa45;background:color-mix(in srgb,#6daa45 15%,var(--surf2))">19:22</div>
+    <div class="badge-sub">Seg 13</div>
+    <div class="badge-dur">141s</div>
+  </div>
+  <div class="seg-vis"><svg viewBox="0 0 180 96" xmlns="http://www.w3.org/2000/svg" style="background:var(--surf2);border-radius:6px;display:block;width:100%;height:96px"><rect x="40" y="2" width="100" height="13" rx="3" fill="#4f98a3" opacity=".75"/><text x="90" y="12" text-anchor="middle" font-size="6.5" fill="#fff">Tile my shower by Tuesday?</text><line x1="90" y1="15" x2="90" y2="20" stroke="#888" stroke-width="1"/><rect x="2" y="20" width="50" height="22" rx="4" fill="#6daa45" opacity=".75"/><text x="27" y="30" text-anchor="middle" font-size="6.5" fill="#fff" font-weight="bold">Project</text><text x="27" y="39" text-anchor="middle" font-size="6" fill="#fff">Guidance</text><line x1="52" y1="31" x2="64" y2="31" stroke="#888" stroke-width="1.5"/><rect x="65" y="20" width="50" height="22" rx="4" fill="#6daa45" opacity=".75"/><text x="90" y="30" text-anchor="middle" font-size="6.5" fill="#fff" font-weight="bold">Materials</text><text x="90" y="39" text-anchor="middle" font-size="6" fill="#fff">List</text><line x1="115" y1="31" x2="128" y2="31" stroke="#888" stroke-width="1.5"/><rect x="128" y="20" width="50" height="22" rx="4" fill="#6daa45" opacity=".75"/><text x="153" y="30" text-anchor="middle" font-size="6.5" fill="#fff" font-weight="bold">Delivery</text><text x="153" y="39" text-anchor="middle" font-size="6" fill="#fff">Window</text><text x="27" y="55" text-anchor="middle" font-size="5.5" fill="#888">Trades Team</text><text x="90" y="55" text-anchor="middle" font-size="5.5" fill="#888">Merchandising</text><text x="153" y="55" text-anchor="middle" font-size="5.5" fill="#888">Fulfillment</text><rect x="30" y="62" width="120" height="16" rx="3" fill="#437a22" opacity=".75"/><text x="90" y="73" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">Yes - arrives Tuesday</text></svg></div>
+  <div class="seg-text">
+    <div class="seg-title" style="color:#6daa45">13. Case Study: Home Improvement Retailer</div>
+    <div class="seg-range">19:22 &ndash; 21:43</div>
+    <div class="seg-desc">"I want to tile my shower, deliver by Tuesday?" Three skills fire in DAG sequence: Project Guidance (Trades Team), Materials List (Merchandising), Delivery Window (Fulfillment) - each owned by different domain experts.</div>
+    <div class="seg-quote" style="border-color:#6daa45;color:#6daa45">You are not asking the AI team to become experts in plumbing regulations.</div>
+    <a class="yt-link" href="https://www.youtube.com/watch?v=uYURYHhpmKc&t=1162s" target="_blank" rel="noopener" style="color:#6daa45">&#x25BA; Watch from 19:22 on YouTube</a>
+  </div>
+  <div class="seg-accent-bar" style="background:#6daa45"></div>
+</div>
+<div class="seg-card" id="card-13" data-start="1304" data-end="1422">
+  <div class="seg-left">
+    <div class="badge-time" style="color:#4f98a3;background:color-mix(in srgb,#4f98a3 15%,var(--surf2))">21:44</div>
+    <div class="badge-sub">Seg 14</div>
+    <div class="badge-dur">118s</div>
+  </div>
+  <div class="seg-vis"><svg viewBox="0 0 180 96" xmlns="http://www.w3.org/2000/svg" style="background:var(--surf2);border-radius:6px;display:block;width:100%;height:96px"><text x="90" y="10" text-anchor="middle" font-size="7.5" fill="#cdccca" font-weight="bold">Paradigm Shift</text><rect x="4" y="18" width="72" height="38" rx="4" fill="#a13544" opacity=".12" stroke="#a13544" stroke-width="1"/><text x="40" y="32" text-anchor="middle" font-size="7" fill="#a13544" font-weight="bold">Bigger Model</text><text x="40" y="48" text-anchor="middle" font-size="16">&#x1F6A7;</text><text x="40" y="70" text-anchor="middle" font-size="6" fill="#a13544">dead end</text><text x="90" y="42" text-anchor="middle" font-size="22" fill="#d19900">&#x2192;</text><rect x="104" y="18" width="72" height="38" rx="4" fill="#4f98a3" opacity=".12" stroke="#4f98a3" stroke-width="1"/><text x="140" y="32" text-anchor="middle" font-size="7" fill="#4f98a3" font-weight="bold">Structured Env.</text><text x="140" y="48" text-anchor="middle" font-size="16">&#x1F6E3;</text><text x="140" y="70" text-anchor="middle" font-size="6" fill="#4f98a3">the moat</text><text x="90" y="84" text-anchor="middle" font-size="5.8" fill="#888">Find expert -&gt; skill.md -&gt; 3 JSON evals -&gt; read-only</text><text x="90" y="93" text-anchor="middle" font-size="6" fill="#4f98a3" font-weight="bold">The model is a commodity. Skills are the moat.</text></svg></div>
+  <div class="seg-text">
+    <div class="seg-title" style="color:#4f98a3">14. Closing: Environment &gt; Model Size</div>
+    <div class="seg-range">21:44 &ndash; 23:42</div>
+    <div class="seg-desc">Stop trying to make the model smarter. Make the ENVIRONMENT structured. Action: find an expert, record them, write skill.md, write 3 JSON evals, ship to read-only tier. The model is a commodity; the skills are the moat.</div>
+    <div class="seg-quote" style="border-color:#4f98a3;color:#4f98a3">The model is a commodity. The skills are the moat.</div>
+    <a class="yt-link" href="https://www.youtube.com/watch?v=uYURYHhpmKc&t=1304s" target="_blank" rel="noopener" style="color:#4f98a3">&#x25BA; Watch from 21:44 on YouTube</a>
+  </div>
+  <div class="seg-accent-bar" style="background:#4f98a3"></div>
+</div>
+
+</div>
+<script>
+function toggleTheme(){
+  var d=document.documentElement,c=d.getAttribute('data-theme');
+  d.setAttribute('data-theme',c==='dark'?'light':'dark');
+  document.getElementById('tog-btn').textContent=c==='dark'?'Dark':'Light';
+}
+function onScroll(){
+  var cards=document.querySelectorAll('.seg-card');
+  var mid=window.scrollY+window.innerHeight*0.38;
+  var best=-1,bestD=1e9;
+  cards.forEach(function(c,i){var t=c.getBoundingClientRect().top+window.scrollY;var d=Math.abs(t-mid);if(d<bestD){bestD=d;best=i;}});
+  cards.forEach(function(c,i){c.classList.toggle('active',i===best);});
+  var h=document.body.scrollHeight-window.innerHeight;
+  var p=h>0?(window.scrollY/h)*100:0;
+  document.getElementById('pbar').style.width=Math.min(p,100)+'%';
+}
+window.addEventListener('scroll',onScroll,{passive:true});
+onScroll();
+</script>
+</body>
+</html>
