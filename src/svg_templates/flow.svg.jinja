@@ -1,0 +1,28 @@
+<svg viewBox="0 0 180 96" xmlns="http://www.w3.org/2000/svg" style="background:var(--surf2);border-radius:6px;display:block;width:100%;height:96px">
+  <defs>
+    <marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 z" fill="{{ accentColor }}" opacity=".8"/>
+    </marker>
+  </defs>
+
+  {% for step in steps[:3] %}
+  {% set rect_x = [4, 62, 120][loop.index0] %}
+  <!-- Step Rects -->
+  <rect x="{{ rect_x }}" y="32" width="56" height="22" rx="4" fill="{{ accentColor }}" opacity="{{ [0.55, 0.75, 0.9][loop.index0] }}"/>
+  <text x="{{ rect_x + 28 }}" y="42" text-anchor="middle" font-size="6.5" fill="#fff" font-weight="bold">{{ step }}</text>
+  
+  <!-- Sublabel underneath -->
+  {% if sublabels and sublabels[loop.index0] %}
+  <text x="{{ rect_x + 28 }}" y="62" text-anchor="middle" font-size="5.5" fill="{{ accentColor }}">{{ sublabels[loop.index0] }}</text>
+  {% endif %}
+
+  <!-- Connector Line -->
+  {% if not loop.last %}
+  <line x1="{{ rect_x + 56 }}" y1="43" x2="{{ rect_x + 56 + 2 }}" y2="43" stroke="{{ accentColor }}" stroke-width="1.5" marker-end="url(#arrow)"/>
+  {% endif %}
+  {% endfor %}
+
+  {% if extra %}
+  <text x="90" y="82" text-anchor="middle" font-size="6" fill="#888">{{ extra }}</text>
+  {% endif %}
+</svg>

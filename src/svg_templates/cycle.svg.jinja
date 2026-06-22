@@ -1,0 +1,14 @@
+<svg viewBox="0 0 180 96" xmlns="http://www.w3.org/2000/svg" style="background:var(--surf2);border-radius:6px;display:block;width:100%;height:96px">
+  <!-- Central Emoji -->
+  <circle cx="90" cy="44" r="28" fill="none" stroke="{{ accentColor }}" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="90" y="50" text-anchor="middle" font-size="16">{{ center or '🔄' }}</text>
+
+  <!-- Cycle Nodes -->
+  {% for step in steps[:4] %}
+  {% set x_pos = [62, 142, 62, 2][loop.index0] %}
+  {% set y_pos = [2, 38, 76, 38][loop.index0] %}
+  {% set width = [56, 36, 56, 36][loop.index0] %}
+  <rect x="{{ x_pos }}" y="{{ y_pos }}" width="{{ width }}" height="13" rx="3" fill="{{ accentColor }}" opacity=".75"/>
+  <text x="{{ x_pos + width / 2 }}" y="{{ y_pos + 9.5 }}" text-anchor="middle" font-size="6.5" fill="#fff">{{ step }}</text>
+  {% endfor %}
+</svg>

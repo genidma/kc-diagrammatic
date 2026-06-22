@@ -143,7 +143,7 @@ This is the LLM call. It reads `data/raw_transcript.json` and calls Gemini 2.5 F
 5. Parse and validate the JSON
 6. Save to `data/segments.json`
 
-**Reference output to match:** See `agent-skills-companion.html` — the 14 segment cards in that file are the gold standard for what segments.json should produce.
+**Reference output to match:** See `archive/agent-skills-companion-archive.html` — the 14 segment cards in that file are the gold standard for what segments.json should produce.
 
 ---
 
@@ -151,7 +151,7 @@ This is the LLM call. It reads `data/raw_transcript.json` and calls Gemini 2.5 F
 
 After segments.json is working, build:
 1. `src/svg_templates/` — 8 Jinja2 `.svg.jinja` files, one per template type
-2. `templates/companion.html.jinja` — full-page HTML matching the design of `agent-skills-companion.html`
+2. `templates/companion.html.jinja` — full-page HTML matching the design of `archive/agent-skills-companion-archive.html`
 3. `src/render.py` — loads segments.json, renders each SVG, assembles the HTML page
 
 ---

@@ -6,9 +6,10 @@ Inspired by the Feynman technique of breaking complex ideas into simple, digesti
 
 ---
 
-## 🖼️ Reference Output
+## 🖼️ Reference & Generated Output
 
-The file [`agent-skills-companion.html`](./agent-skills-companion.html) in this repo is the **reference output** — hand-crafted by Perplexity for the YouTube video [Agent Skills Podcast](https://www.youtube.com/watch?v=uYURYHhpmKc). Every design and architecture decision made in this project should produce output that looks and feels like this file.
+- **Manual Prototype (Archived)**: The original mock companion page hand-crafted as a visual design spec is located at [`archive/agent-skills-companion-archive.html`](./archive/agent-skills-companion-archive.html).
+- **Automated Output**: The actual generated companion page produced by the Python CLI pipeline is written to [`output/companion.html`](./output/companion.html). Open this file in your browser to view the final rendered results. Every design and architecture decision made in this project is aligned to match the quality of the original prototype.
 
 ---
 
@@ -102,7 +103,8 @@ The LLM picks the right template type and provides JSON data to fill it. Python 
 ```
 kc-diagrammatic/
 │
-├── agent-skills-companion.html   # ⭐ Reference output — the design target
+├── archive/
+│   └── agent-skills-companion-archive.html   # ⭐ Original manual prototype design spec
 │
 ├── src/                          # Python pipeline (Layers 1–3)
 │   ├── main.py                   # CLI entrypoint: python src/main.py <youtube_url>
@@ -308,7 +310,7 @@ pip install -r requirements.txt
 
 1. **Determinism over prompt engineering** — Python scripts handle data transformation; LLMs handle reasoning only
 2. **File message bus** — each layer writes its output to disk; the next layer reads from disk (no in-memory coupling between layers)
-3. **Reference HTML is the spec** — `agent-skills-companion.html` is the design and content target for all pipeline output
+3. **Reference HTML is the spec** — `archive/agent-skills-companion-archive.html` is the design and content target for all pipeline output
 4. **Templates, not raw generation** — SVG Jinja2 templates produce consistent, debuggable output vs. raw LLM-generated SVG code
 5. **Local first** — the full pipeline must work entirely on a local machine before any cloud deployment is attempted
 

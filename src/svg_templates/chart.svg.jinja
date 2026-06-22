@@ -1,0 +1,26 @@
+<svg viewBox="0 0 180 96" xmlns="http://www.w3.org/2000/svg" style="background:var(--surf2);border-radius:6px;display:block;width:100%;height:96px">
+  <!-- Grid Lines / Axes -->
+  <line x1="18" y1="85" x2="175" y2="85" stroke="{{ accentColor }}" stroke-width=".8" opacity=".6"/>
+  <line x1="18" y1="8" x2="18" y2="85" stroke="{{ accentColor }}" stroke-width=".8" opacity=".6"/>
+
+  <!-- Plot Line -->
+  {% if points %}
+  <polyline points="{% for pt in points %}{{ pt[0] }},{{ pt[1] }}{% if not loop.last %} {% endif %}{% endfor %}" fill="none" stroke="{{ accentColor }}" stroke-width="2.5"/>
+  {% endif %}
+
+  <!-- Annotation / Callout -->
+  {% if annotation %}
+  <!-- Draw an indicator line from top annotation area to last point if available -->
+  {% set last_pt = points[-1] if points else [122, 56] %}
+  <line x1="{{ last_pt[0] }}" y1="20" x2="{{ last_pt[0] }}" y2="{{ last_pt[1] }}" stroke="#a13544" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="{{ last_pt[0] + 4 }}" y="28" font-size="6" fill="#a13544">{{ annotation.split(' ')[0] or '' }}</text>
+  <text x="{{ last_pt[0] + 4 }}" y="36" font-size="6" fill="#a13544">{{ annotation.split(' ')[1:] | join(' ') or '' }}</text>
+  {% endif %}
+
+  <!-- Axis Labels -->
+  <text x="97" y="94" text-anchor="middle" font-size="6" fill="#888">{{ xLabel or 'Context window' }}</text>
+  <text x="6" y="50" font-size="6" fill="#888" transform="rotate(-90 6 50)" text-anchor="middle">{{ yLabel or 'Accuracy' }}</text>
+
+  <!-- Title -->
+  <text x="97" y="8" text-anchor="middle" font-size="7" fill="{{ accentColor }}" font-weight="bold">{{ title }}</text>
+</svg>
