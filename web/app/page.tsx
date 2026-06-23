@@ -13,7 +13,7 @@ export default function Home() {
   const [url, setUrl] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [htmlContent, setHtmlContent] = useState('');
+  const [iframeUrl, setIframeUrl] = useState('');
   const [progressMsg, setProgressMsg] = useState('');
   const [history, setHistory] = useState<HistoryItem[]>([]);
   
@@ -62,7 +62,7 @@ export default function Home() {
   const generateCompanion = async (youtubeUrl: string) => {
     setLoading(true);
     setError('');
-    setHtmlContent('');
+    setIframeUrl('');
     setProgressMsg('Step 1/3: Extracting transcript from YouTube...');
 
     const progressTimer = setTimeout(() => {
@@ -91,8 +91,21 @@ export default function Home() {
         throw new Error(data.error || 'Failed to generate companion page');
       }
 
-      const html = await response.text();
-      setHtmlContent(html);
+      // Extract video ID from youtubeUrl to set source URL
+      let videoId = "";
+      try {
+        if (youtubeUrl.includes("v=")) {
+          videoId = youtubeUrl.split("v=")[1].split("&")[0];
+        } else if (youtubeUrl.includes("youtu.be/")) {
+          videoId = youtubeUrl.split("youtu.be/")[1].split("?")[0];
+        }
+      } catch (e) {}
+      
+      if (videoId) {
+        setIframeUrl(`/api/session/${videoId}?t=${Date.now()}`);
+      } else {
+        setIframeUrl(`/api/session/uYURYHhpmKc?t=${Date.now()}`);
+      }
       fetchHistory();
     } catch (err: any) {
       console.error(err);
@@ -108,17 +121,12 @@ export default function Home() {
   const handleSelectHistoryItem = async (item: HistoryItem) => {
     setLoading(true);
     setError('');
-    setHtmlContent('');
+    setIframeUrl('');
     setProgressMsg('Loading pre-computed companion guide...');
 
     try {
-      const response = await fetch(`/api/session/${item.videoId}`);
-      if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.error || 'Failed to load cached session');
-      }
-      const html = await response.text();
-      setHtmlContent(html);
+      // Direct load to iframe URL to avoid null-origin restrictions on YouTube embeds
+      setIframeUrl(`/api/session/${item.videoId}?t=${Date.now()}`);
     } catch (err: any) {
       console.error(err);
       setError(err.message || 'Something went wrong while retrieving session');
@@ -243,7 +251,7 @@ export default function Home() {
       )}
 
       <main className="flex-1 flex flex-col items-center justify-center p-6 max-w-[95%] mx-auto w-full">
-        {!htmlContent ? (
+        {!iframeUrl ? (
           <div className="w-full max-w-4xl py-12 flex flex-col items-center">
             <div className="w-full max-w-2xl text-center mb-8">
               <h2 className="text-4xl font-extrabold tracking-tight mb-4 bg-gradient-to-b from-white to-zinc-400 bg-clip-text text-transparent sm:text-5xl">
@@ -335,14 +343,14 @@ export default function Home() {
             <div className="bg-zinc-950 border-b border-zinc-800 px-4 py-2 flex justify-between items-center text-xs">
               <span className="text-zinc-500">Live Render Frame</span>
               <button
-                onClick={() => setHtmlContent('')}
+                onClick={() => setIframeUrl('')}
                 className="text-zinc-400 hover:text-white bg-zinc-800 hover:bg-zinc-700 px-3 py-1 rounded-md transition-all"
               >
                 ← Generate Another
               </button>
             </div>
             <iframe
-              srcDoc={htmlContent}
+              src={iframeUrl}
               className="w-full flex-1 border-0"
               title="Visual Companion Output"
             />
@@ -352,4 +360,3 @@ export default function Home() {
     </div>
   );
 }
-
